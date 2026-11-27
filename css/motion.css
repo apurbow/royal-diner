@@ -1,0 +1,248 @@
+/* ROYAL DINER motion system */
+:root {
+    --motion-ease: cubic-bezier(.22, .68, 0, 1);
+    --motion-duration: 760ms;
+}
+
+/* Scroll reveals stay visible when JavaScript is unavailable or motion is disabled. */
+body.motion-ready [data-motion-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition:
+        opacity 720ms var(--motion-ease),
+        transform 720ms var(--motion-ease);
+    transition-delay: var(--motion-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+body.motion-ready [data-motion-reveal][data-motion-type="fade"] {
+    transform: none;
+}
+
+body.motion-ready [data-motion-reveal][data-motion-type="left"] {
+    transform: translate3d(-28px, 0, 0);
+}
+
+body.motion-ready [data-motion-reveal][data-motion-type="right"] {
+    transform: translate3d(28px, 0, 0);
+}
+
+/* Hero and editorial images use a soft fade-and-pop, never a clipping wipe. */
+body.motion-ready [data-motion-reveal][data-motion-type="image"] {
+    transform: translate3d(0, 14px, 0) scale(.985);
+    transition:
+        opacity 850ms var(--motion-ease),
+        transform 850ms var(--motion-ease);
+}
+
+body.motion-ready [data-motion-reveal].is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    will-change: auto;
+}
+
+/* Keep the two above-the-fold hero images independent of the scroll observer. */
+body.motion-ready .home-hero-photo,
+body.motion-ready .about-hero-visual {
+    animation: motion-hero-image-enter 850ms var(--motion-ease) both;
+}
+
+@keyframes motion-hero-image-enter {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 14px, 0) scale(.985);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+/* Keep the existing card lift interactions after their entrance reveal. */
+body.motion-ready .home-food-card[data-motion-reveal].is-visible:hover,
+body.motion-ready .home-category-card[data-motion-reveal].is-visible:hover,
+body.motion-ready .menu-card[data-motion-reveal].is-visible:hover {
+    transform: translateY(-3px);
+}
+
+/* Editorial hero timing */
+.home-hero-copy [data-motion-reveal],
+.about-hero-copy [data-motion-reveal] {
+    --motion-delay: 0ms;
+}
+
+.home-hero-copy [data-motion-reveal]:nth-child(2),
+.about-hero-copy [data-motion-reveal]:nth-child(2) {
+    --motion-delay: 110ms;
+}
+
+.home-hero-copy [data-motion-reveal]:nth-child(3),
+.about-hero-copy [data-motion-reveal]:nth-child(3) {
+    --motion-delay: 220ms;
+}
+
+.home-hero-copy [data-motion-reveal]:nth-child(4),
+.about-hero-copy [data-motion-reveal]:nth-child(4) {
+    --motion-delay: 330ms;
+}
+
+/* Deliberate hover and press feedback */
+.btn-primary-custom,
+.btn-secondary-custom,
+.btn-outline-custom,
+.menu-category-btn,
+.home-carousel-button,
+.home-add-button,
+.menu-add-button,
+.menu-info-button,
+.motion-toggle {
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 220ms ease,
+        transform 220ms var(--motion-ease);
+}
+
+.btn-primary-custom:active,
+.btn-secondary-custom:active,
+.btn-outline-custom:active,
+.menu-category-btn:active,
+.home-carousel-button:active,
+.home-add-button:active,
+.menu-add-button:active,
+.menu-info-button:active {
+    transform: scale(.975);
+}
+
+.home-food-card,
+.home-category-card,
+.home-highlight-card,
+.home-review-card,
+.about-info-card,
+.about-gallery-card,
+.menu-card {
+    transform-origin: center bottom;
+}
+
+.home-food-card:hover,
+.home-category-card:hover,
+.home-highlight-card:hover,
+.home-review-card:hover,
+.about-info-card:hover,
+.about-gallery-card:hover,
+.menu-card:hover {
+    transition-timing-function: var(--motion-ease);
+}
+
+/* Small, useful transitions for the step-based flows */
+.checkout-step:not([hidden]),
+.reservation-step:not([hidden]) {
+    animation: motion-step-enter 360ms var(--motion-ease) both;
+}
+
+.order-confirmation:not([hidden]) .order-confirmation-card,
+.reservation-confirmation:not([hidden]) .reservation-confirmation-card {
+    animation: motion-confirmation-enter 620ms var(--motion-ease) both;
+}
+
+@keyframes motion-step-enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes motion-confirmation-enter {
+    from { opacity: 0; transform: translateY(18px) scale(.99); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Quiet footer control */
+.motion-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 34px;
+    padding: 5px 10px;
+    border: 1px solid rgba(243, 233, 220, .3);
+    border-radius: 999px;
+    background: transparent;
+    color: rgba(243, 233, 220, .86);
+    font: inherit;
+    font-size: .76rem;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.motion-toggle i {
+    font-size: .95rem;
+}
+
+.motion-toggle:hover:not(:disabled) {
+    border-color: rgba(243, 233, 220, .75);
+    background: rgba(243, 233, 220, .1);
+    color: var(--color-base);
+}
+
+.motion-toggle:focus-visible {
+    outline: 2px solid var(--color-main);
+    outline-offset: 3px;
+}
+
+.motion-toggle:disabled {
+    cursor: not-allowed;
+    opacity: .72;
+}
+
+.footer-bottom-inner {
+    justify-content: space-between;
+}
+
+/* A manual opt-out also makes transitions immediate. */
+html.motion-disabled,
+body.motion-disabled,
+body.motion-disabled * {
+    scroll-behavior: auto !important;
+}
+
+body.motion-disabled *,
+body.motion-disabled *::before,
+body.motion-disabled *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+}
+
+@media (max-width: 576px) {
+    .footer-bottom-inner {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .motion-toggle {
+        min-height: 32px;
+        font-size: .72rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    body.motion-ready [data-motion-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        will-change: auto !important;
+    }
+}

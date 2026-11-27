@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en" class="demo-gate-pending">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/demo-config.js"></script>
+    <meta name="description"
+        content="Reserve a table at ROYAL DINER, manage upcoming bookings, and retrieve reservation details.">
+    <title>Reservation | ROYAL DINER</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Merienda:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet" crossorigin="anonymous">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        crossorigin="anonymous" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/reservation.css">
+    <link rel="stylesheet" href="css/language-typography.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/demo-mode.css">
+</head>
+
+<body class="reservation-page-body">
+    <div id="demo-gate" class="demo-gate" aria-live="polite">
+        <div class="demo-loader" id="demoLoader" aria-hidden="false">
+            <div class="demo-logo-wrap" aria-hidden="true">
+                <span class="demo-ripple"></span>
+                <span class="demo-ripple"></span>
+                <span class="demo-ripple"></span>
+                <img class="demo-loader-logo" src="img/o-logo.png" alt="">
+            </div>
+        </div>
+
+        <section class="demo-confirmation" id="demoConfirmation" role="dialog" aria-modal="true"
+            aria-labelledby="demoConfirmationTitle" aria-describedby="demoConfirmationIntro" hidden>
+            <div class="demo-modal-topline">
+                <span class="demo-modal-kicker" id="demoModalKicker">A NOTE BEFORE YOU EXPLORE</span>
+                <label class="demo-language-control">
+                    <span class="visually-hidden" id="demoLanguageLabel">Language</span>
+                    <select id="demoLanguageSelect" aria-labelledby="demoLanguageLabel">
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="demo-modal-brand" aria-hidden="true">
+                <img src="img/logo.png" alt="">
+                <span>ROYAL DINER</span>
+            </div>
+            <h1 id="demoConfirmationTitle">Welcome to ROYAL DINER</h1>
+            <p class="demo-confirmation-intro" id="demoConfirmationIntro">
+                Before you explore, please note that this is a demonstration website created for presentation purposes.
+            </p>
+
+            <div class="demo-disclaimer-content">
+                <h2 id="demoDetailsHeading">About this website</h2>
+                <ul>
+                    <li id="demoDetailOne">ROYAL DINER is fictional. Restaurant information, menu items, descriptions,
+                        photos and prices were created for this demonstration.</li>
+                    <li id="demoDetailTwo">Orders, delivery and pickup requests, and table reservations are simulations
+                        only. Nothing is sent to a restaurant or fulfilled.</li>
+                    <li id="demoDetailThree">No payment is collected.</li>
+                    <li id="demoDetailFour">Information entered into forms, along with cart, order and reservation
+                        details, is stored only in this browser. It is not sent to a server.</li>
+                </ul>
+            </div>
+
+            <p class="demo-confirmation-thanks" id="demoConfirmationThanks">Thank you for taking the time to explore
+                ROYAL DINER.</p>
+            <button class="demo-confirm-button" id="demoConfirmButton" type="button">
+                <span id="demoConfirmButtonText">I Understand &amp; Continue</span>
+                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </button>
+        </section>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html" aria-label="ROYAL DINER Home">
+                    <img src="img/logo.png" alt="ROYAL DINER logo" class="brand-logo">
+                    <span class="brand-text"><span class="brand-name font-display-title">Royal Diner</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+                    aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html" data-page="home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="menu.html" data-page="menu">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="order.html" data-page="order">Order</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reservation.html"
+                                data-page="reservation">Reservation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html" data-page="about">About</a></li>
+                        <li class="nav-item language-nav-item">
+                            <label class="visually-hidden" for="siteLanguageSelect">Language</label>
+                            <select id="siteLanguageSelect" class="language-select" data-language-select
+                                aria-label="Language">
+                                <option value="ja">日本語</option>
+                                <option value="en">English</option>
+                            </select>
+                        </li>
+                        <li class="nav-item cart-nav-item">
+                            <button id="cartOpenButton" class="cart-link" type="button" aria-label="Open shopping cart"
+                                aria-haspopup="dialog" aria-controls="cartDrawer" aria-expanded="false"
+                                title="Shopping Cart">
+                                <i class="bi bi-cart3" aria-hidden="true"></i>
+                                <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section reservation-section">
+            <div class="container">
+                <div class="page-heading reservation-page-heading text-center">
+                    <p class="reservation-eyebrow">ロイヤル・ダイナー</p>
+                    <h1>Reserve Your Table</h1>
+                    <p>Plan your visit and let us prepare a comfortable table for you.</p>
+                </div>
+
+                <div class="reservation-tabs" role="tablist" aria-label="Reservation center">
+                    <button class="reservation-tab" id="makeReservationTab" type="button" role="tab"
+                        aria-selected="true" aria-controls="bookingPanel" tabindex="0">
+                        <i class="bi bi-calendar-plus" aria-hidden="true"></i><span>Make a Reservation</span>
+                    </button>
+                    <button class="reservation-tab" id="myReservationsTab" type="button" role="tab"
+                        aria-selected="false" aria-controls="reservationsPanel" tabindex="-1">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i><span>My Reservations</span>
+                    </button>
+                </div>
+
+                <section id="bookingPanel" class="reservation-tab-panel" role="tabpanel"
+                    aria-labelledby="makeReservationTab">
+                    <div id="reservationWorkflow" class="reservation-workflow-layout">
+                        <div class="reservation-main-column">
+                            <form id="reservationForm" class="reservation-card" novalidate>
+                                <div class="demo-form-notice" role="note">
+                                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                    <span>Demo only: This form does not create a real reservation. Details are saved
+                                        only in this browser.</span>
+                                </div>
+                                <div class="reservation-stepper" aria-label="Reservation progress">
+                                    <div class="reservation-step-indicator is-current" data-res-step-indicator="1"
+                                        aria-current="step"><span>1</span><span>Your visit</span></div>
+                                    <div class="reservation-step-indicator" data-res-step-indicator="2">
+                                        <span>2</span><span>Your details</span></div>
+                                    <div class="reservation-step-indicator" data-res-step-indicator="3">
+                                        <span>3</span><span>Review</span></div>
+                                </div>
+
+                                <div id="reservationStep1" class="reservation-step" data-res-step-panel="1">
+                                    <h2 class="reservation-step-title">When would you like to visit?</h2>
+                                    <p class="reservation-step-description">Choose your party size, date, and an
+                                        available time.</p>
+                                    <div class="reservation-form-grid">
+                                        <div class="reservation-field">
+                                            <label for="reservationGuestCount">Number of guests <span
+                                                    class="required-mark" aria-hidden="true">*</span></label>
+                                            <select id="reservationGuestCount" name="guestCount" required
+                                                aria-describedby="guestCountError largePartyNotice">
+                                                <option value="1">1 guest</option>
+                                                <option value="2" selected>2 guests</option>
+                                                <option value="3">3 guests</option>
+                                                <option value="4">4 guests</option>
+                                                <option value="5">5 guests</option>
+                                                <option value="6">6 guests</option>
+                                                <option value="7">7 guests</option>
+                                                <option value="8">8 guests</option>
+                                                <option value="9">9 guests</option>
+                                                <option value="10">10 guests</option>
+                                                <option value="11">11 guests</option>
+                                                <option value="12">12 guests</option>
+                                            </select>
+                                            <span class="reservation-error" id="guestCountError" hidden></span>
+                                        </div>
+                                        <div class="reservation-field">
+                                            <label for="reservationDate">Reservation date <span class="required-mark"
+                                                    aria-hidden="true">*</span></label>
+                                            <input id="reservationDate" name="reservationDate" type="date" required
+                                                aria-describedby="reservationDateHelp reservationDateError">
+                                            <span class="reservation-field-help" id="reservationDateHelp">Past dates are
+                                                unavailable.</span>
+                                            <span class="reservation-error" id="reservationDateError" hidden></span>
+                                        </div>
+                                        <div id="largePartyNotice" class="reservation-rule-note full-width" hidden>
+                                            <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                            <span>Groups of 7–12 need at least 48 hours' notice. Choose a date and time
+                                                that meet this requirement.</span>
+                                        </div>
+                                        <div class="reservation-field full-width">
+                                            <fieldset class="reservation-time-fieldset"
+                                                aria-describedby="reservationTimeHelp reservationTimeError">
+                                                <legend>Available time <span class="required-mark"
+                                                        aria-hidden="true">*</span></legend>
+                                                <p class="reservation-field-help" id="reservationTimeHelp">Choose one of
+                                                    the available times. A slot becomes unavailable when its capacity is
+                                                    reached.</p>
+                                                <div id="reservationTimeSlots" class="reservation-time-grid"
+                                                    role="group" aria-label="Available reservation times">
+                                                    <p class="reservation-time-placeholder">Choose a date to see
+                                                        available times.</p>
+                                                </div>
+                                            </fieldset>
+                                            <span class="reservation-error" id="reservationTimeError" role="alert"
+                                                hidden></span>
+                                            <p id="reservationAvailabilityMessage"
+                                                class="reservation-availability-message" aria-live="polite"></p>
+                                        </div>
+                                    </div>
+                                    <div class="reservation-step-actions">
+                                        <a class="btn-outline-custom" href="menu.html"><i class="bi bi-arrow-left"
+                                                aria-hidden="true"></i> Back to Menu</a>
+                                        <button class="btn-primary-custom" id="reservationNextToDetails"
+                                            type="button">Continue to Details <i class="bi bi-arrow-right"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+
+                                <div id="reservationStep2" class="reservation-step" data-res-step-panel="2" hidden>
+                                    <h2 class="reservation-step-title">Tell us about your visit</h2>
+                                    <p class="reservation-step-description">Enter your contact details and any
+                                        preferences for your table.</p>
+                                    <div id="reservationFormGeneralError" class="reservation-general-error" role="alert"
+                                        hidden>Please check the highlighted fields below.</div>
+                                    <div class="reservation-form-grid">
+                                        <div class="reservation-field">
+                                            <label for="reservationName">Full name <span class="required-mark"
+                                                    aria-hidden="true">*</span></label>
+                                            <input id="reservationName" name="name" type="text" autocomplete="name"
+                                                maxlength="100" placeholder="Your name" required
+                                                aria-describedby="reservationNameError">
+                                            <span class="reservation-error" id="reservationNameError" hidden></span>
+                                        </div>
+                                        <div class="reservation-field">
+                                            <label for="reservationPhone">Telephone number <span class="required-mark"
+                                                    aria-hidden="true">*</span></label>
+                                            <input id="reservationPhone" name="phone" type="tel" inputmode="tel"
+                                                autocomplete="tel" maxlength="25" placeholder="e.g. 090-1234-5678"
+                                                required aria-describedby="reservationPhoneHelp reservationPhoneError">
+                                            <span class="reservation-field-help" id="reservationPhoneHelp">Use a number
+                                                where we can reach you about the booking.</span>
+                                            <span class="reservation-error" id="reservationPhoneError" hidden></span>
+                                        </div>
+                                        <div class="reservation-field full-width">
+                                            <label for="reservationEmail">Email address <span
+                                                    class="optional-label">(optional)</span></label>
+                                            <input id="reservationEmail" name="email" type="email" autocomplete="email"
+                                                maxlength="150" placeholder="you@example.com"
+                                                aria-describedby="reservationEmailError">
+                                            <span class="reservation-error" id="reservationEmailError" hidden></span>
+                                        </div>
+                                        <div class="reservation-field">
+                                            <label for="reservationOccasion">Occasion <span
+                                                    class="optional-label">(optional)</span></label>
+                                            <select id="reservationOccasion" name="occasion">
+                                                <option value="">No special occasion</option>
+                                                <option value="Birthday">Birthday</option>
+                                                <option value="Anniversary">Anniversary</option>
+                                                <option value="Family gathering">Family gathering</option>
+                                                <option value="Business meal">Business meal</option>
+                                                <option value="Other celebration">Other celebration</option>
+                                            </select>
+                                        </div>
+                                        <div class="reservation-field">
+                                            <label for="reservationSeating">Seating preference <span
+                                                    class="optional-label">(optional)</span></label>
+                                            <select id="reservationSeating" name="seatingPreference">
+                                                <option value="No preference">No preference</option>
+                                                <option value="Window seat">Window seat</option>
+                                                <option value="Quiet area">Quiet area</option>
+                                                <option value="Booth seating">Booth seating</option>
+                                            </select>
+                                        </div>
+                                        <div class="reservation-field full-width">
+                                            <label for="reservationNotes">Special requests <span
+                                                    class="optional-label">(optional)</span></label>
+                                            <textarea id="reservationNotes" name="notes" rows="3" maxlength="500"
+                                                placeholder="Anything that would help us prepare for your visit?"></textarea>
+                                            <span class="reservation-field-help">Seating preferences are requests and
+                                                cannot be guaranteed.</span>
+                                        </div>
+                                    </div>
+                                    <div class="reservation-step-actions">
+                                        <button class="btn-outline-custom" id="reservationBackToVisit" type="button"><i
+                                                class="bi bi-arrow-left" aria-hidden="true"></i> Back</button>
+                                        <button class="btn-primary-custom" id="reservationNextToReview"
+                                            type="button">Review Reservation <i class="bi bi-arrow-right"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+
+                                <div id="reservationStep3" class="reservation-step" data-res-step-panel="3" hidden>
+                                    <h2 class="reservation-step-title">Review your reservation</h2>
+                                    <p class="reservation-step-description">Check the details below before confirming
+                                        your table.</p>
+                                    <div id="reservationReviewContent" class="reservation-review-content"></div>
+                                    <div id="reservationSubmitError" class="reservation-general-error" role="alert"
+                                        hidden></div>
+                                    <div class="reservation-step-actions">
+                                        <button class="btn-outline-custom" id="reservationBackToDetails"
+                                            type="button"><i class="bi bi-arrow-left" aria-hidden="true"></i> Edit
+                                            Details</button>
+                                        <button class="btn-primary-custom" id="confirmReservationButton"
+                                            type="submit"><i class="bi bi-check2-circle" aria-hidden="true"></i> Confirm
+                                            Reservation</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <aside class="reservation-side-column">
+                            <section class="reservation-summary-card" aria-labelledby="reservationSummaryTitle">
+                                <div class="reservation-summary-heading">
+                                    <h2 id="reservationSummaryTitle">Your Visit</h2><span
+                                        class="reservation-summary-icon"><i class="bi bi-calendar-heart"
+                                            aria-hidden="true"></i></span>
+                                </div>
+                                <dl id="reservationLiveSummary" class="reservation-live-summary">
+                                    <div>
+                                        <dt><i class="bi bi-people" aria-hidden="true"></i> Guests</dt>
+                                        <dd id="summaryGuestCount">2 guests</dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="bi bi-calendar3" aria-hidden="true"></i> Date</dt>
+                                        <dd id="summaryReservationDate">Choose a date</dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="bi bi-clock" aria-hidden="true"></i> Time</dt>
+                                        <dd id="summaryReservationTime">Choose a time</dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="bi bi-stars" aria-hidden="true"></i> Occasion</dt>
+                                        <dd id="summaryReservationOccasion">None selected</dd>
+                                    </div>
+                                </dl>
+                            </section>
+                            <section class="reservation-rules-card" aria-labelledby="reservationRulesTitle">
+                                <h2 id="reservationRulesTitle">Before You Book</h2>
+                                <ul>
+                                    <li>Reservations are available for 1–12 guests.</li>
+                                    <li>Groups of 7 or more require 48 hours' notice.</li>
+                                    <li>Seating preferences are subject to availability.</li>
+                                    <li>You can view, edit, or cancel upcoming reservations from My Reservations.</li>
+                                </ul>
+                            </section>
+                        </aside>
+                    </div>
+
+                    <section id="reservationConfirmation" class="reservation-confirmation" hidden
+                        aria-labelledby="reservationConfirmationTitle" tabindex="-1">
+                        <div class="reservation-confirmation-card">
+                            <span class="reservation-confirmation-icon"><i class="bi bi-check-lg"
+                                    aria-hidden="true"></i></span>
+                            <p class="reservation-confirmation-eyebrow">Thank you for choosing Royal Diner</p>
+                            <h2 id="reservationConfirmationTitle">Reservation confirmed</h2>
+                            <p id="reservationConfirmationLead" class="reservation-confirmation-lead">Your reservation
+                                details are ready.</p>
+                            <div class="reservation-number-panel"><span>Reservation number</span><strong
+                                    id="confirmedReservationNumber">RD-R-00000000</strong></div>
+                            <div class="reservation-qr-panel">
+                                <div id="reservationConfirmationQr" class="reservation-qr-canvas"
+                                    aria-label="QR code containing this reservation reference"></div>
+                                <p>Reservation reference QR code</p>
+                                <p id="reservationConfirmationQrFallback" class="reservation-qr-fallback" hidden></p>
+                            </div>
+
+                            <div class="demo-form-notice" role="note">
+                                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                <span>Demo only: Orders, delivery and pickup requests are simulated and will not be
+                                    fulfilled. Form
+                                    details are saved only in this browser.</span>
+                            </div>
+                            <div id="reservationConfirmationSummary" class="reservation-review-content"></div>
+                            <div class="reservation-confirmation-actions">
+                                <button class="btn-primary-custom" id="viewMyReservationsButton" type="button"><i
+                                        class="bi bi-calendar-check" aria-hidden="true"></i> View My
+                                    Reservations</button>
+                                <button class="btn-outline-custom" id="makeAnotherReservationButton" type="button"><i
+                                        class="bi bi-plus-circle" aria-hidden="true"></i> Make Another
+                                    Reservation</button>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="reservationsPanel" class="reservation-tab-panel" role="tabpanel"
+                    aria-labelledby="myReservationsTab" hidden>
+                    <div class="reservation-history-tools">
+                        <div>
+                            <h2>Your Reservations</h2>
+                            <p>Review your bookings, update upcoming visits, or retrieve a reservation QR code.</p>
+                        </div>
+                        <button id="startNewReservationButton" class="btn-primary-custom" type="button"><i
+                                class="bi bi-plus-circle" aria-hidden="true"></i> New Reservation</button>
+                    </div>
+                    <div class="reservation-history-filters" role="group" aria-label="Filter reservations">
+                        <button class="reservation-filter-button" type="button" data-res-filter="upcoming"
+                            aria-pressed="true">Upcoming</button>
+                        <button class="reservation-filter-button" type="button" data-res-filter="past"
+                            aria-pressed="false">Past</button>
+                        <button class="reservation-filter-button" type="button" data-res-filter="cancelled"
+                            aria-pressed="false">Cancelled</button>
+                        <button class="reservation-filter-button" type="button" data-res-filter="all"
+                            aria-pressed="false">All</button>
+                    </div>
+                    <div id="reservationHistoryList" class="reservation-history-list" aria-live="polite"></div>
+                    <div id="reservationHistoryEmpty" class="reservation-history-empty" hidden>
+                        <span class="reservation-empty-icon"><i class="bi bi-calendar2-heart"
+                                aria-hidden="true"></i></span>
+                        <h2 id="reservationHistoryEmptyTitle">No upcoming reservations</h2>
+                        <p id="reservationHistoryEmptyText">Your bookings will appear here after you make a reservation.
+                        </p>
+                        <button id="makeReservationFromEmpty" class="btn-primary-custom" type="button"><i
+                                class="bi bi-calendar-plus" aria-hidden="true"></i> Make a Reservation</button>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="reservationDetailDialog" class="reservation-detail-dialog" aria-labelledby="reservationDetailTitle">
+        <div class="reservation-dialog-inner">
+            <div class="reservation-dialog-header">
+                <div>
+                    <h2 id="reservationDetailTitle">Reservation details</h2>
+                    <p id="reservationDetailSubtitle"></p>
+                </div><button id="reservationDetailClose" class="reservation-dialog-close" type="button"
+                    aria-label="Close reservation details"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+            </div>
+            <div class="demo-form-notice" role="note">
+                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                <span>Demo only: Orders, delivery and pickup requests are simulated and will not be fulfilled. Form
+                    details are saved only in this browser.</span>
+            </div>
+            <div id="reservationDetailContent" class="reservation-detail-content"></div>
+            <section class="reservation-detail-qr-block">
+                <h3>Reservation QR code</h3>
+                <p>Use this reference when viewing your reservation details.</p>
+                <div id="reservationDetailQr" class="reservation-qr-canvas"
+                    aria-label="QR code containing this reservation reference"></div>
+                <p id="reservationDetailQrFallback" class="reservation-qr-fallback" hidden></p>
+            </section>
+            <div class="reservation-dialog-actions"><button class="btn-primary-custom" id="reservationDetailCloseFooter"
+                    type="button">Close</button></div>
+        </div>
+    </dialog>
+
+    <dialog id="reservationCancelDialog" class="reservation-cancel-dialog" aria-labelledby="reservationCancelTitle"
+        aria-describedby="reservationCancelMessage">
+        <div class="reservation-cancel-dialog-inner"><span class="reservation-cancel-icon"><i class="bi bi-calendar-x"
+                    aria-hidden="true"></i></span>
+            <h2 id="reservationCancelTitle">Cancel this reservation?</h2>
+            <p id="reservationCancelMessage">This reservation will be marked as cancelled.</p>
+            <div class="reservation-dialog-actions"><button id="reservationCancelKeep" class="btn-outline-custom"
+                    type="button">Keep Reservation</button><button id="reservationCancelConfirm"
+                    class="btn-danger-custom" type="button">Cancel Reservation</button></div>
+        </div>
+    </dialog>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Restaurant -->
+                    <div class="col-lg-5">
+                        <div class="footer-brand font-display-title">Royal Diner</div>
+                        <div class="footer-japanese">ロイヤル・ダイナー</div>
+                        <p class="footer-description">
+                            A cozy restaurant serving delicious Western-style Japanese
+                            dishes.
+                        </p>
+
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="X">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-6 col-lg-2">
+                        <h2 class="footer-title">Quick Links</h2>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="index.html"> Home </a>
+                            </li>
+                            <li>
+                                <a href="menu.html"> Menu </a>
+                            </li>
+                            <li>
+                                <a href="order.html"> Order </a>
+                            </li>
+                            <li>
+                                <a href="reservation.html"> Reservation </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Information -->
+                    <div class="col-6 col-lg-2">
+                        <h2 class="footer-title">Information</h2>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="about.html"> About Us </a>
+                            </li>
+                            <li>
+                                <a href="about.html#access"> Access </a>
+                            </li>
+                            <li>
+                                <a href="about.html#hours"> Business Hours </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-lg-3">
+                        <h2 class="footer-title">Contact</h2>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Tokyo, Japan</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-telephone"></i>
+                                <span>03-0000-0000</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-envelope"></i>
+                                <span>info@royal-diner.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-inner">
+                    <p>
+                        © <span class="current-year">2026</span>
+                        ROYAL DINER
+                    </p>
+                    <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"
+                        aria-label="Turn motion effects off" title="Turn motion effects off">
+                        <i class="bi bi-pause-circle" aria-hidden="true"></i>
+                        <span data-motion-label>Motion: On</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="cartBackdrop" class="cart-backdrop" hidden aria-hidden="true"></div>
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle"
+        aria-describedby="cartDrawerCount" aria-hidden="true" inert>
+        <header class="cart-drawer-header">
+            <div>
+                <h2 id="cartDrawerTitle" class="cart-drawer-title">Your Cart</h2>
+                <span id="cartDrawerCount" class="cart-drawer-count">0 items</span>
+            </div>
+            <button id="cartDrawerClose" class="cart-drawer-close" type="button" aria-label="Close shopping cart"><i
+                    class="bi bi-x-lg" aria-hidden="true"></i></button>
+        </header>
+        <div class="cart-drawer-body">
+            <div id="cartEmptyState" class="cart-empty-state" hidden>
+                <span class="cart-empty-icon"><i class="bi bi-basket2" aria-hidden="true"></i></span>
+                <h3>Your cart is waiting</h3>
+                <p>You have not added any dishes yet. Explore the menu and find something you like.</p>
+                <a class="btn-primary-custom" href="menu.html"><i class="bi bi-journal-richtext" aria-hidden="true"></i>
+                    Browse Menu</a>
+            </div>
+            <div id="cartItems" class="cart-item-list" hidden></div>
+        </div>
+        <footer id="cartDrawerFooter" class="cart-drawer-footer" hidden>
+            <div class="cart-clear-row"><button id="cartClearButton" class="cart-clear-button" type="button">Clear
+                    cart</button></div>
+            <div id="cartClearConfirm" class="cart-clear-confirm" hidden>
+                <span>Remove all items?</span>
+                <span class="cart-clear-confirm-actions">
+                    <button id="cartClearConfirmNo" type="button">Keep items</button>
+                    <button id="cartClearConfirmYes" class="confirm-clear" type="button">Clear all</button>
+                </span>
+            </div>
+            <div class="cart-subtotal-row"><span>Subtotal</span><strong id="cartSubtotal"
+                    class="cart-subtotal-value">¥0</strong></div>
+            <p class="cart-fee-note">Any delivery fee is shown during checkout. Menu prices are displayed as listed.</p>
+            <div class="cart-footer-actions">
+                <a id="cartCheckoutButton" class="btn-primary-custom" href="order.html#checkout"><i
+                        class="bi bi-arrow-right-circle" aria-hidden="true"></i> Proceed to Order</a>
+                <button id="cartContinueShopping" class="btn-outline-custom" type="button">Continue Shopping</button>
+            </div>
+        </footer>
+    </aside>
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+        <span id="cartToastMessage" class="cart-toast-message"></span>
+        <button id="cartToastUndo" class="cart-toast-undo" type="button" hidden>Undo</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/menu-data.js"></script>
+    <script src="js/reservation.js"></script>
+    <script src="js/motion.js"></script>
+    <script src="js/demo-mode.js"></script>
+</body>
+
+</html>

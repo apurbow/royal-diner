@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en" class="demo-gate-pending">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/demo-config.js"></script>
+    <meta name="description" content="Place a ROYAL DINER order, review checkout details, and view your order history.">
+    <title>Order | ROYAL DINER</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Merienda:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet" crossorigin="anonymous">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        crossorigin="anonymous" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="css/language-typography.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/demo-mode.css">
+</head>
+
+<body class="order-page-body">
+    <div id="demo-gate" class="demo-gate" aria-live="polite">
+        <div class="demo-loader" id="demoLoader" aria-hidden="false">
+            <div class="demo-logo-wrap" aria-hidden="true">
+                <span class="demo-ripple"></span>
+                <span class="demo-ripple"></span>
+                <span class="demo-ripple"></span>
+                <img class="demo-loader-logo" src="img/o-logo.png" alt="">
+            </div>
+        </div>
+
+        <section class="demo-confirmation" id="demoConfirmation" role="dialog" aria-modal="true"
+            aria-labelledby="demoConfirmationTitle" aria-describedby="demoConfirmationIntro" hidden>
+            <div class="demo-modal-topline">
+                <span class="demo-modal-kicker" id="demoModalKicker">A NOTE BEFORE YOU EXPLORE</span>
+                <label class="demo-language-control">
+                    <span class="visually-hidden" id="demoLanguageLabel">Language</span>
+                    <select id="demoLanguageSelect" aria-labelledby="demoLanguageLabel">
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="demo-modal-brand" aria-hidden="true">
+                <img src="img/logo.png" alt="">
+                <span>ROYAL DINER</span>
+            </div>
+            <h1 id="demoConfirmationTitle">Welcome to ROYAL DINER</h1>
+            <p class="demo-confirmation-intro" id="demoConfirmationIntro">
+                Before you explore, please note that this is a demonstration website created for presentation purposes.
+            </p>
+
+            <div class="demo-disclaimer-content">
+                <h2 id="demoDetailsHeading">About this website</h2>
+                <ul>
+                    <li id="demoDetailOne">ROYAL DINER is fictional. Restaurant information, menu items, descriptions,
+                        photos and prices were created for this demonstration.</li>
+                    <li id="demoDetailTwo">Orders, delivery and pickup requests, and table reservations are simulations
+                        only. Nothing is sent to a restaurant or fulfilled.</li>
+                    <li id="demoDetailThree">No payment is collected.</li>
+                    <li id="demoDetailFour">Information entered into forms, along with cart, order and reservation
+                        details, is stored only in this browser. It is not sent to a server.</li>
+                </ul>
+            </div>
+
+            <p class="demo-confirmation-thanks" id="demoConfirmationThanks">Thank you for taking the time to explore
+                ROYAL DINER.</p>
+            <button class="demo-confirm-button" id="demoConfirmButton" type="button">
+                <span id="demoConfirmButtonText">I Understand &amp; Continue</span>
+                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </button>
+        </section>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html" aria-label="ROYAL DINER Home">
+                    <img src="img/logo.png" alt="" class="brand-logo">
+                    <span class="brand-text"><span class="brand-name font-display-title">Royal Diner</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+                    aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html" data-page="home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="menu.html" data-page="menu">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="order.html" data-page="order">Order</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reservation.html"
+                                data-page="reservation">Reservation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html" data-page="about">About</a></li>
+                        <li class="nav-item language-nav-item">
+                            <label class="visually-hidden" for="siteLanguageSelect">Language</label>
+                            <select id="siteLanguageSelect" class="language-select" data-language-select
+                                aria-label="Language">
+                                <option value="ja">日本語</option>
+                                <option value="en">English</option>
+                            </select>
+                        </li>
+                        <li class="nav-item cart-nav-item">
+                            <button id="cartOpenButton" class="cart-link" type="button" aria-label="Open shopping cart"
+                                aria-haspopup="dialog" aria-controls="cartDrawer" aria-expanded="false"
+                                title="Shopping Cart">
+                                <i class="bi bi-cart3" aria-hidden="true"></i>
+                                <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section order-section">
+            <div class="container">
+                <div class="page-heading order-page-heading text-center">
+                    <h1>Order with Royal Diner</h1>
+                    <p>Place an order, or return to your order details whenever you need them.</p>
+                </div>
+
+                <div class="order-tabs" role="tablist" aria-label="Order center">
+                    <button class="order-tab" id="placeOrderTab" type="button" role="tab" aria-selected="true"
+                        aria-controls="checkoutPanel" tabindex="0">
+                        <i class="bi bi-bag-check" aria-hidden="true"></i><span>Place an Order</span>
+                    </button>
+                    <button class="order-tab" id="myOrdersTab" type="button" role="tab" aria-selected="false"
+                        aria-controls="ordersPanel" tabindex="-1">
+                        <i class="bi bi-clock-history" aria-hidden="true"></i><span>My Orders</span>
+                    </button>
+                </div>
+
+                <section id="checkoutPanel" class="order-tab-panel" role="tabpanel" aria-labelledby="placeOrderTab">
+                    <div id="checkoutEmptyState" class="checkout-empty-state" hidden>
+                        <i class="bi bi-basket2" aria-hidden="true"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Add a few dishes from the menu before checking out. Your selected dishes will appear here.
+                        </p>
+                        <a class="btn-primary-custom" href="menu.html"><i class="bi bi-journal-richtext"
+                                aria-hidden="true"></i> Explore the Menu</a>
+                    </div>
+
+                    <div id="checkoutWorkflow" class="checkout-workflow">
+                        <div class="checkout-layout">
+                            <div class="checkout-main-column">
+                                <form id="checkoutForm" class="checkout-card" novalidate>
+                                    <div class="demo-form-notice" role="note">
+                                        <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                        <span>Demo only: Orders, delivery and pickup requests are simulated and will not
+                                            be fulfilled. Form details are saved only in this browser.</span>
+                                    </div>
+                                    <div class="checkout-stepper" aria-label="Checkout progress">
+                                        <div class="checkout-step-indicator is-current" data-step-indicator="1"
+                                            aria-current="step"><span class="checkout-step-number">1</span><span>Order
+                                                type</span></div>
+                                        <div class="checkout-step-indicator" data-step-indicator="2"><span
+                                                class="checkout-step-number">2</span><span>Your details</span></div>
+                                        <div class="checkout-step-indicator" data-step-indicator="3"><span
+                                                class="checkout-step-number">3</span><span>Review</span></div>
+                                    </div>
+
+                                    <div id="checkoutStep1" class="checkout-step" data-step-panel="1">
+                                        <h2 class="checkout-step-title">How would you like your order?</h2>
+                                        <p class="checkout-step-description">Choose the option that works best for you.
+                                            You can review everything before placing the order.</p>
+                                        <fieldset class="order-type-fieldset" aria-describedby="orderTypeError">
+                                            <legend>Select an order type <span class="required-mark"
+                                                    aria-hidden="true">*</span></legend>
+                                            <div class="order-type-grid">
+                                                <label class="order-type-option">
+                                                    <input type="radio" name="orderType" value="delivery">
+                                                    <span class="order-type-icon"><i class="bi bi-truck"
+                                                            aria-hidden="true"></i></span>
+                                                    <span class="order-type-name">Delivery</span>
+                                                    <span class="order-type-description">Delivered to your address.
+                                                        Delivery fee: ¥300.</span>
+                                                </label>
+                                                <label class="order-type-option">
+                                                    <input type="radio" name="orderType" value="pickup" checked>
+                                                    <span class="order-type-icon"><i class="bi bi-bag"
+                                                            aria-hidden="true"></i></span>
+                                                    <span class="order-type-name">Pickup</span>
+                                                    <span class="order-type-description">Collect your order from the
+                                                        restaurant.</span>
+                                                </label>
+                                                <label class="order-type-option">
+                                                    <input type="radio" name="orderType" value="eat-in">
+                                                    <span class="order-type-icon"><i class="bi bi-cup-hot"
+                                                            aria-hidden="true"></i></span>
+                                                    <span class="order-type-name">Eat-in</span>
+                                                    <span class="order-type-description">Order for dining in at the
+                                                        restaurant.</span>
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                        <div id="orderTypeError" class="order-error" role="alert" hidden>Please select
+                                            an order type.</div>
+                                        <div class="checkout-step-actions">
+                                            <span></span>
+                                            <button class="btn-primary-custom" id="nextToDetails" type="button">Continue
+                                                to Details <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+
+                                    <div id="checkoutStep2" class="checkout-step" data-step-panel="2" hidden>
+                                        <h2 class="checkout-step-title">Your details</h2>
+                                        <p class="checkout-step-description">Enter the details needed for this order.
+                                            Fields marked with * are required.</p>
+                                        <div id="customerFormGeneralError" class="order-general-error" role="alert"
+                                            hidden>Please check the highlighted fields below.</div>
+                                        <div class="order-form-grid">
+                                            <div class="order-field">
+                                                <label for="customerName">Full name <span class="required-mark"
+                                                        aria-hidden="true">*</span></label>
+                                                <input id="customerName" name="customerName" type="text"
+                                                    autocomplete="name" maxlength="100" placeholder="Your name"
+                                                    aria-describedby="customerNameError" required>
+                                                <span class="order-error" id="customerNameError" hidden></span>
+                                            </div>
+                                            <div class="order-field">
+                                                <label for="customerPhone">Telephone number <span class="required-mark"
+                                                        aria-hidden="true">*</span></label>
+                                                <input id="customerPhone" name="customerPhone" type="tel"
+                                                    inputmode="tel" autocomplete="tel" maxlength="25"
+                                                    placeholder="e.g. 090-1234-5678"
+                                                    aria-describedby="customerPhoneHelp customerPhoneError" required>
+                                                <span id="customerPhoneHelp" class="order-field-help">Used to contact
+                                                    you about your order.</span>
+                                                <span class="order-error" id="customerPhoneError" hidden></span>
+                                            </div>
+                                            <div class="order-field full-width">
+                                                <label for="customerEmail">Email address <span
+                                                        class="text-muted-custom">(optional)</span></label>
+                                                <input id="customerEmail" name="customerEmail" type="email"
+                                                    autocomplete="email" maxlength="150" placeholder="you@example.com"
+                                                    aria-describedby="customerEmailError">
+                                                <span class="order-error" id="customerEmailError" hidden></span>
+                                            </div>
+
+                                            <div id="deliveryAddressFields" class="order-field full-width" hidden>
+                                                <label for="deliveryAddress">Delivery address <span
+                                                        class="required-mark" aria-hidden="true">*</span></label>
+                                                <input id="deliveryAddress" name="deliveryAddress" type="text"
+                                                    autocomplete="street-address" maxlength="250"
+                                                    placeholder="Street, building, apartment, etc."
+                                                    aria-describedby="deliveryAddressError">
+                                                <span class="order-error" id="deliveryAddressError" hidden></span>
+                                            </div>
+                                            <div id="deliveryPostalCodeField" class="order-field" hidden>
+                                                <label for="deliveryPostalCode">Postal code <span
+                                                        class="text-muted-custom">(optional)</span></label>
+                                                <input id="deliveryPostalCode" name="deliveryPostalCode" type="text"
+                                                    autocomplete="postal-code" inputmode="numeric" maxlength="12"
+                                                    placeholder="e.g. 100-0001">
+                                            </div>
+                                            <div id="eatInTableField" class="order-field" hidden>
+                                                <label for="tableNumber">Table number <span
+                                                        class="text-muted-custom">(optional)</span></label>
+                                                <input id="tableNumber" name="tableNumber" type="text" maxlength="20"
+                                                    placeholder="Enter your table number">
+                                            </div>
+
+                                            <div class="order-field full-width">
+                                                <span class="order-field-label">Requested time</span>
+                                                <div class="order-schedule-choice">
+                                                    <label class="order-schedule-option"><input type="radio"
+                                                            name="requestedTimeMode" value="asap" checked><span>As soon
+                                                            as possible</span></label>
+                                                    <label class="order-schedule-option"><input type="radio"
+                                                            name="requestedTimeMode" value="scheduled"><span>Schedule
+                                                            for later</span></label>
+                                                </div>
+                                            </div>
+                                            <div id="scheduledTimeField" class="order-field full-width" hidden>
+                                                <label for="requestedDateTime">Choose date and time <span
+                                                        class="required-mark" aria-hidden="true">*</span></label>
+                                                <input id="requestedDateTime" name="requestedDateTime"
+                                                    type="datetime-local"
+                                                    aria-describedby="requestedDateTimeHelp requestedDateTimeError"
+                                                    disabled>
+                                                <span id="requestedDateTimeHelp" class="order-field-help">Choose a
+                                                    future time for your order.</span>
+                                                <span class="order-error" id="requestedDateTimeError" hidden></span>
+                                            </div>
+                                            <div class="order-field full-width">
+                                                <label for="orderNotes">Order notes <span
+                                                        class="text-muted-custom">(optional)</span></label>
+                                                <textarea id="orderNotes" name="orderNotes" maxlength="500"
+                                                    placeholder="Allergies or other requests (up to 500 characters)"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="checkout-step-actions">
+                                            <button class="checkout-back-button" id="backToType" type="button"><i
+                                                    class="bi bi-arrow-left" aria-hidden="true"></i> Back</button>
+                                            <button class="btn-primary-custom" id="nextToReview" type="button">Review
+                                                Order <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+
+                                    <div id="checkoutStep3" class="checkout-step" data-step-panel="3" hidden>
+                                        <h2 class="checkout-step-title">Review your order</h2>
+                                        <p class="checkout-step-description">Check the items, contact details, and total
+                                            below. Nothing is submitted until you confirm.</p>
+                                        <div id="checkoutReviewContent"></div>
+                                        <div id="orderSubmitError" class="order-general-error" role="alert" hidden>
+                                        </div>
+                                        <div class="checkout-step-actions">
+                                            <button class="checkout-back-button" id="backToDetails" type="button"><i
+                                                    class="bi bi-arrow-left" aria-hidden="true"></i> Edit
+                                                Details</button>
+                                            <button class="btn-primary-custom" id="confirmOrderButton" type="button"><i
+                                                    class="bi bi-check2-circle" aria-hidden="true"></i> Place
+                                                Order</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <aside class="order-summary-card" aria-label="Order summary">
+                                <div class="order-summary-heading">
+                                    <div class="order-summary-heading-copy">
+                                        <h2>Order Summary</h2>
+                                        <p id="orderSummaryCount">0 items selected</p>
+                                    </div><button class="order-summary-edit-button" id="editOrderCartButton"
+                                        type="button" aria-label="Edit cart items"><i class="bi bi-pencil-square"
+                                            aria-hidden="true"></i> Edit Cart</button>
+                                </div>
+                                <div class="order-summary-items" id="orderSummaryItems"></div>
+                                <div class="order-summary-totals">
+                                    <div class="order-summary-total-row"><span>Subtotal</span><strong
+                                            id="orderSummarySubtotal">¥0</strong></div>
+                                    <div class="order-summary-total-row"><span id="orderSummaryFeeLabel">Delivery
+                                            fee</span><strong id="orderSummaryFee">¥0</strong></div>
+                                    <div class="order-summary-total-row final"><span>Estimated total</span><strong
+                                            id="orderSummaryTotal">¥0</strong></div>
+                                    <p class="order-summary-footnote">Delivery fee: ¥300 when delivery is selected.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+
+                    <section id="orderConfirmation" class="order-confirmation" hidden
+                        aria-labelledby="confirmationTitle" tabindex="-1">
+                        <div class="order-confirmation-card">
+                            <span class="order-confirmation-icon"><i class="bi bi-check-lg"
+                                    aria-hidden="true"></i></span>
+                            <h2 id="confirmationTitle">Order confirmed</h2>
+                            <p class="order-confirmation-lead">Your order details are ready.</p>
+                            <div class="order-number-panel"><span>Order number</span><strong
+                                    id="confirmationOrderNumber">RD-00000000</strong></div>
+                            <div class="order-confirmation-qr">
+                                <div class="order-qr-canvas" id="confirmationQrCode"
+                                    aria-label="QR code containing this order reference"></div>
+                                <p>Order reference QR code</p>
+                                <p class="order-qr-fallback" id="confirmationQrFallback" hidden></p>
+                            </div>
+                            <div id="confirmationSummary" class="checkout-review-block"></div>
+                            <div class="order-confirmation-actions">
+                                <button class="btn-primary-custom" id="viewSavedOrderButton" type="button"><i
+                                        class="bi bi-clock-history" aria-hidden="true"></i> View in My Orders</button>
+                                <a class="btn-outline-custom" href="menu.html"><i class="bi bi-journal-richtext"
+                                        aria-hidden="true"></i> Return to Menu</a>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="ordersPanel" class="order-tab-panel" role="tabpanel" aria-labelledby="myOrdersTab" hidden>
+                    <div class="order-history-tools">
+                        <div>
+                            <h2>Your order history</h2>
+                            <p>Review previous orders, open order details, or retrieve a QR code.</p>
+                        </div>
+                        <a class="btn-outline-custom" href="menu.html"><i class="bi bi-plus-circle"
+                                aria-hidden="true"></i> Start a New Order</a>
+                    </div>
+                    <div class="order-history-filters" role="group" aria-label="Filter order history">
+                        <button class="order-filter-button" type="button" data-order-filter="all"
+                            aria-pressed="true">All</button>
+                        <button class="order-filter-button" type="button" data-order-filter="active"
+                            aria-pressed="false">Active</button>
+                        <button class="order-filter-button" type="button" data-order-filter="completed"
+                            aria-pressed="false">Completed</button>
+                        <button class="order-filter-button" type="button" data-order-filter="cancelled"
+                            aria-pressed="false">Cancelled</button>
+                    </div>
+                    <div id="orderHistoryList" class="order-history-list" aria-live="polite"></div>
+                    <div id="orderHistoryEmpty" class="order-history-empty" hidden>
+                        <i class="bi bi-receipt" aria-hidden="true"></i>
+                        <h2 id="orderHistoryEmptyTitle">No orders yet</h2>
+                        <p id="orderHistoryEmptyText">Your orders will appear here after you place an order.</p>
+                        <a class="btn-primary-custom" id="startOrderFromHistory" href="menu.html"><i
+                                class="bi bi-journal-richtext" aria-hidden="true"></i> Browse Menu</a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Restaurant -->
+                    <div class="col-lg-5">
+                        <div class="footer-brand font-display-title">Royal Diner</div>
+                        <div class="footer-japanese">ロイヤル・ダイナー</div>
+                        <p class="footer-description">
+                            A cozy restaurant serving delicious Western-style Japanese
+                            dishes.
+                        </p>
+
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="X">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-6 col-lg-2">
+                        <h2 class="footer-title">Quick Links</h2>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="index.html"> Home </a>
+                            </li>
+                            <li>
+                                <a href="menu.html"> Menu </a>
+                            </li>
+                            <li>
+                                <a href="order.html"> Order </a>
+                            </li>
+                            <li>
+                                <a href="reservation.html"> Reservation </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Information -->
+                    <div class="col-6 col-lg-2">
+                        <h2 class="footer-title">Information</h2>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="about.html"> About Us </a>
+                            </li>
+                            <li>
+                                <a href="about.html#access"> Access </a>
+                            </li>
+                            <li>
+                                <a href="about.html#hours"> Business Hours </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-lg-3">
+                        <h2 class="footer-title">Contact</h2>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Tokyo, Japan</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-telephone"></i>
+                                <span>03-0000-0000</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-envelope"></i>
+                                <span>info@royal-diner.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-inner">
+                    <p>
+                        © <span class="current-year">2026</span>
+                        ROYAL DINER
+                    </p>
+                    <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true"
+                        aria-label="Turn motion effects off" title="Turn motion effects off">
+                        <i class="bi bi-pause-circle" aria-hidden="true"></i>
+                        <span data-motion-label>Motion: On</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="cartBackdrop" class="cart-backdrop" hidden aria-hidden="true"></div>
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle"
+        aria-describedby="cartDrawerCount" aria-hidden="true" inert>
+        <header class="cart-drawer-header">
+            <div>
+                <h2 id="cartDrawerTitle" class="cart-drawer-title">Your Cart</h2>
+                <span id="cartDrawerCount" class="cart-drawer-count">0 items</span>
+            </div>
+            <button id="cartDrawerClose" class="cart-drawer-close" type="button" aria-label="Close shopping cart"><i
+                    class="bi bi-x-lg" aria-hidden="true"></i></button>
+        </header>
+        <div class="cart-drawer-body">
+            <div id="cartEmptyState" class="cart-empty-state" hidden>
+                <span class="cart-empty-icon"><i class="bi bi-basket2" aria-hidden="true"></i></span>
+                <h3>Your cart is waiting</h3>
+                <p>You have not added any dishes yet. Explore the menu and find something you like.</p>
+                <a class="btn-primary-custom" href="menu.html"><i class="bi bi-journal-richtext" aria-hidden="true"></i>
+                    Browse Menu</a>
+            </div>
+            <div id="cartItems" class="cart-item-list" hidden></div>
+        </div>
+        <footer id="cartDrawerFooter" class="cart-drawer-footer" hidden>
+            <div class="cart-clear-row"><button id="cartClearButton" class="cart-clear-button" type="button">Clear
+                    cart</button></div>
+            <div id="cartClearConfirm" class="cart-clear-confirm" hidden>
+                <span>Remove all items?</span>
+                <span class="cart-clear-confirm-actions">
+                    <button id="cartClearConfirmNo" type="button">Keep items</button>
+                    <button id="cartClearConfirmYes" class="confirm-clear" type="button">Clear all</button>
+                </span>
+            </div>
+            <div class="cart-subtotal-row"><span>Subtotal</span><strong id="cartSubtotal" class="cart-subtotal-value"
+                    aria-live="polite">¥0</strong></div>
+            <p class="cart-fee-note">Any delivery fee is shown during checkout. Menu prices are displayed as listed.</p>
+            <div class="cart-footer-actions">
+                <a id="cartCheckoutButton" class="btn-primary-custom" href="order.html#checkout"><i
+                        class="bi bi-arrow-right-circle" aria-hidden="true"></i> Proceed to Order</a>
+                <button id="cartContinueShopping" class="btn-outline-custom" type="button">Continue Shopping</button>
+            </div>
+        </footer>
+    </aside>
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+        <span id="cartToastMessage" class="cart-toast-message"></span>
+        <button id="cartToastUndo" class="cart-toast-undo" type="button" hidden>Undo</button>
+    </div>
+
+    <dialog id="orderDetailDialog" class="order-detail-dialog" aria-labelledby="orderDetailTitle">
+        <div class="order-detail-dialog-inner">
+            <div class="order-detail-dialog-header">
+                <div>
+                    <h2 id="orderDetailTitle">Order details</h2>
+                    <p id="orderDetailSubtitle"></p>
+                </div>
+                <button id="orderDetailClose" class="order-detail-close" type="button"
+                    aria-label="Close order details"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+            </div>
+            <br>
+            <div class="demo-form-notice" role="note">
+                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                <span>Demo only: Orders, delivery and pickup requests are simulated and will not be fulfilled. Form
+                    details are saved only in this browser.</span>
+            </div>
+            <div id="orderDetailContent" class="order-detail-content"></div>
+            <div class="order-detail-qr-block">
+                <h3>Order reference QR code</h3>
+                <p>This code contains only the order reference.</p>
+                <div id="orderDetailQrCode" class="order-qr-canvas"
+                    aria-label="QR code containing this order reference"></div>
+                <p id="orderDetailQrFallback" class="order-qr-fallback" hidden></p>
+            </div>
+            <div class="order-detail-dialog-actions"><button id="orderDetailCloseFooter" class="btn-primary-custom"
+                    type="button">Close</button></div>
+        </div>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/menu-data.js"></script>
+    <script src="js/order.js"></script>
+    <script src="js/motion.js"></script>
+    <script src="js/demo-mode.js"></script>
+</body>
+
+</html>

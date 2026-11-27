@@ -1,0 +1,11 @@
+ROYAL DINER — About Page Images
+
+Create these five image files and save them under: img/about/
+
+1. about-hero-interior.jpg — Wide landscape hero photo of the warm, retro Japanese yoshoku restaurant interior.
+2. about-signature-dishes.jpg — Landscape food photo showing several signature Japanese Western-style dishes together.
+3. about-seating-detail.jpg — Landscape photo of seating and interior details.
+4. about-table-setting.jpg — Landscape close-up of a table setting, cutlery, plates, and napkin.
+5. about-dining-detail.jpg — Landscape close-up of a warm, tasteful restaurant detail such as wood grain, a pendant light, or a menu on a table.
+
+Suggested visual style: photorealistic, warm natural light, cream/caramel/brown palette, no visible text, no logos, no watermark. Keep the photos visually consistent with one another. All filenames above are referenced directly by about.html.

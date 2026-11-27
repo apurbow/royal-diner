@@ -1,0 +1,390 @@
+/* First-visit demo gate */
+html.demo-gate-pending,
+html.demo-gate-pending body {
+    min-height: 100%;
+    overflow: hidden !important;
+    background: #F3E9DC !important;
+}
+
+html.demo-gate-pending body > :not(#demo-gate) {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
+#demo-gate {
+    display: none;
+}
+
+html.demo-gate-pending #demo-gate {
+    position: fixed;
+    z-index: 2147483000;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at 50% 46%, rgba(255, 250, 243, .82) 0, rgba(243, 233, 220, .96) 54%, #F3E9DC 100%);
+    color: #5E3023;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 620ms ease, visibility 620ms ease;
+}
+
+html.demo-gate-releasing #demo-gate {
+    position: fixed;
+    z-index: 2147483000;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 24px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 46%, rgba(255, 250, 243, .82) 0, rgba(243, 233, 220, .96) 54%, #F3E9DC 100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.demo-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    width: min(100%, 320px);
+    text-align: center;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 520ms ease, transform 620ms cubic-bezier(.2, .7, .2, 1), visibility 520ms ease;
+}
+
+.demo-logo-wrap {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 200px;
+    height: 200px;
+    isolation: isolate;
+}
+
+.demo-loader-logo {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    display: block;
+    transform: scale(1.01);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 7px 12px rgba(94, 48, 35, .12));
+    animation: demo-logo-breathe 2.8s ease-in-out infinite;
+}
+
+.demo-ripple {
+    position: absolute;
+    z-index: 1;
+    inset: 50% auto auto 50%;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(137, 87, 55, .6);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.72);
+    animation: demo-ripple-pulse 3.15s cubic-bezier(.16, .56, .42, 1) infinite;
+}
+
+.demo-ripple:nth-child(2) { animation-delay: 1.05s; }
+.demo-ripple:nth-child(3) { animation-delay: 2.1s; }
+
+.demo-loader-wordmark {
+    color: #5E3023;
+    font-family: "Shippori Mincho", Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: .22em;
+    line-height: 1.4;
+    text-indent: .22em;
+}
+
+html.demo-gate-pending.demo-gate-showing-confirmation .demo-loader {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(.94);
+}
+html.demo-gate-pending.demo-gate-showing-confirmation .demo-loader-logo,
+html.demo-gate-pending.demo-gate-showing-confirmation .demo-ripple {
+    animation-play-state: paused;
+}
+
+.demo-confirmation {
+    width: min(100%, 650px);
+    max-height: calc(100vh - 48px);
+    max-height: calc(100dvh - 48px);
+    padding: clamp(25px, 4.3vw, 43px) clamp(23px, 4.5vw, 48px) 34px;
+    overflow-y: auto;
+    border: 1px solid rgba(137, 87, 55, .22);
+    border-radius: 18px;
+    background: rgba(255, 252, 247, .97);
+    box-shadow: 0 24px 70px rgba(76, 43, 29, .16), 0 3px 10px rgba(76, 43, 29, .06);
+    color: #5E3023;
+    opacity: 0;
+    transform: translateY(14px) scale(.985);
+    transition: opacity 560ms ease, transform 650ms cubic-bezier(.2, .7, .2, 1);
+    scrollbar-color: rgba(192, 133, 82, .55) transparent;
+    scrollbar-width: thin;
+}
+
+.demo-confirmation[hidden] { display: none !important; }
+
+html.demo-gate-pending.demo-gate-modal-visible .demo-confirmation {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+html.demo-gate-releasing .demo-loader,
+html.demo-gate-releasing .demo-confirmation {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.demo-modal-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(137, 87, 55, .15);
+}
+
+.demo-modal-kicker {
+    color: #895737;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    line-height: 1.5;
+}
+
+.demo-language-control { flex: 0 0 auto; margin: 0; }
+.demo-language-control select {
+    min-width: 112px;
+    min-height: 36px;
+    padding: 5px 28px 5px 10px;
+    border: 1px solid rgba(94, 48, 35, .25);
+    border-radius: 7px;
+    outline: none;
+    background: #F8F1E8;
+    color: #5E3023;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .82rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.demo-language-control select:focus-visible,
+.demo-confirm-button:focus-visible {
+    outline: 3px solid rgba(192, 133, 82, .42);
+    outline-offset: 3px;
+}
+
+.demo-modal-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin: 23px 0 10px;
+    color: #895737;
+    font-family: "Shippori Mincho", Georgia, serif;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+}
+.demo-modal-brand img { width: 34px; height: 34px; object-fit: contain; }
+
+.demo-confirmation h1 {
+    margin: 0 0 12px;
+    color: #5E3023;
+    font-family: "Shippori Mincho", Georgia, serif;
+    font-size: clamp(1.55rem, 3vw, 2.05rem);
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.demo-confirmation-intro {
+    max-width: 520px;
+    margin: 0 auto 23px;
+    color: #74513F;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .94rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.demo-disclaimer-content {
+    padding: 19px 21px 17px;
+    border: 1px solid rgba(192, 133, 82, .2);
+    border-radius: 11px;
+    background: #F8F1E8;
+}
+.demo-disclaimer-content h2 {
+    margin: 0 0 12px;
+    color: #895737;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.demo-disclaimer-content ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.demo-disclaimer-content li {
+    position: relative;
+    padding-left: 19px;
+    color: #654536;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .88rem;
+    line-height: 1.72;
+}
+.demo-disclaimer-content li::before {
+    position: absolute;
+    top: .68em;
+    left: 1px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C08552;
+    content: "";
+}
+.demo-confirmation-thanks {
+    margin: 19px 0 20px;
+    color: #895737;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .84rem;
+    line-height: 1.7;
+    text-align: center;
+}
+.demo-confirm-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 52px;
+    padding: 13px 20px;
+    border: 1px solid #5E3023;
+    border-radius: 8px;
+    background: #5E3023;
+    color: #FFF9F1;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .92rem;
+    font-weight: 800;
+    letter-spacing: .025em;
+    cursor: pointer;
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+.demo-confirm-button:hover {
+    transform: translateY(-2px);
+    border-color: #895737;
+    background: #895737;
+    box-shadow: 0 7px 16px rgba(94, 48, 35, .16);
+}
+.demo-confirm-button:active { transform: translateY(0); }
+.demo-confirm-button i { font-size: 1rem; transition: transform 180ms ease; }
+.demo-confirm-button:hover i { transform: translateX(3px); }
+
+html[data-demo-language="ja"] .demo-loader-wordmark,
+html[data-demo-language="ja"] .demo-modal-brand,
+html[data-demo-language="ja"] .demo-confirmation h1 {
+    font-family: "Shippori Mincho", serif;
+    letter-spacing: .08em;
+}
+html[data-demo-language="ja"] .demo-confirmation-intro,
+html[data-demo-language="ja"] .demo-disclaimer-content li,
+html[data-demo-language="ja"] .demo-confirmation-thanks {
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.9;
+}
+html[data-demo-language="ja"] .demo-disclaimer-content h2 { font-family: "Noto Sans JP", sans-serif; letter-spacing: .04em; }
+
+.demo-form-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 22px;
+    padding: 12px 15px;
+    border: 1px solid rgba(192, 133, 82, .23);
+    border-radius: 8px;
+    background: #F8F1E8;
+    color: #74513F;
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    line-height: 1.7;
+}
+.demo-form-notice i {
+    flex: 0 0 auto;
+    margin-top: .12em;
+    color: #A36B3F;
+    font-size: 1rem;
+}
+html[lang="ja"] .demo-form-notice {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: .8rem;
+    line-height: 1.85;
+}
+
+@keyframes demo-ripple-pulse {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(.72); }
+    12% { opacity: .52; }
+    72% { opacity: .12; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.72); }
+}
+@keyframes demo-logo-breathe {
+    0%, 100% { transform: scale(.98); }
+    50% { transform: scale(1.045); }
+}
+
+@media (max-width: 575px) {
+    html.demo-gate-pending #demo-gate { padding: 17px; }
+    .demo-confirmation {
+        max-height: calc(100vh - 34px);
+        max-height: calc(100dvh - 34px);
+        padding: 21px 18px 22px;
+        border-radius: 14px;
+    }
+    .demo-modal-topline { gap: 10px; padding-bottom: 14px; }
+    .demo-modal-kicker { max-width: 170px; font-size: .58rem; }
+    .demo-language-control select { min-width: 94px; font-size: .76rem; }
+    .demo-modal-brand { margin-top: 17px; }
+    .demo-confirmation h1 { font-size: 1.45rem; }
+    .demo-confirmation-intro { margin-bottom: 17px; font-size: .86rem; }
+    .demo-disclaimer-content { padding: 15px 14px 14px; }
+    .demo-disclaimer-content li { font-size: .82rem; }
+    .demo-confirmation-thanks { margin: 15px 0 16px; font-size: .8rem; }
+    .demo-confirm-button { min-height: 49px; font-size: .86rem; }
+}
+
+@media (max-height: 650px) and (min-width: 576px) {
+    #demo-gate { align-items: flex-start !important; }
+    .demo-confirmation { margin-block: 8px; }
+    .demo-modal-brand { margin-top: 12px; }
+}

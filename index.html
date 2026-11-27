@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en" class="demo-gate-pending">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/demo-config.js"></script>
+    <meta name="description"
+        content="Discover Japanese Western-style comfort food at ROYAL DINER. Explore signature dishes, browse the menu, order online, or reserve a table." />
+    <title>Home | ROYAL DINER</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Merienda:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet" crossorigin="anonymous">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" crossorigin="anonymous"/>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/language-typography.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/demo-mode.css">
+</head>
+
+<body>
+    <div id="demo-gate" class="demo-gate" aria-live="polite">
+        <div class="demo-loader" id="demoLoader" aria-hidden="false">
+            <div class="demo-logo-wrap" aria-hidden="true">
+                <span class="demo-ripple"></span>
+                <span class="demo-ripple"></span>
+                <span class="demo-ripple"></span>
+                <img class="demo-loader-logo" src="img/o-logo.png" alt="">
+            </div>
+        </div>
+
+        <section class="demo-confirmation" id="demoConfirmation" role="dialog" aria-modal="true"
+            aria-labelledby="demoConfirmationTitle" aria-describedby="demoConfirmationIntro" hidden>
+            <div class="demo-modal-topline">
+                <span class="demo-modal-kicker" id="demoModalKicker">A NOTE BEFORE YOU EXPLORE</span>
+                <label class="demo-language-control">
+                    <span class="visually-hidden" id="demoLanguageLabel">Language</span>
+                    <select id="demoLanguageSelect" aria-labelledby="demoLanguageLabel">
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="demo-modal-brand" aria-hidden="true">
+                <img src="img/logo.png" alt="">
+                <span>ROYAL DINER</span>
+            </div>
+            <h1 id="demoConfirmationTitle">Welcome to ROYAL DINER</h1>
+            <p class="demo-confirmation-intro" id="demoConfirmationIntro">
+                Before you explore, please note that this is a demonstration website created for presentation purposes.
+            </p>
+
+            <div class="demo-disclaimer-content">
+                <h2 id="demoDetailsHeading">About this website</h2>
+                <ul>
+                    <li id="demoDetailOne">ROYAL DINER is fictional. Restaurant information, menu items, descriptions, photos and prices were created for this demonstration.</li>
+                    <li id="demoDetailTwo">Orders, delivery and pickup requests, and table reservations are simulations only. Nothing is sent to a restaurant or fulfilled.</li>
+                    <li id="demoDetailThree">No payment is collected.</li>
+                    <li id="demoDetailFour">Information entered into forms, along with cart, order and reservation details, is stored only in this browser. It is not sent to a server.</li>
+                </ul>
+            </div>
+
+            <p class="demo-confirmation-thanks" id="demoConfirmationThanks">Thank you for taking the time to explore ROYAL DINER.</p>
+            <button class="demo-confirm-button" id="demoConfirmButton" type="button">
+                <span id="demoConfirmButtonText">I Understand &amp; Continue</span>
+                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </button>
+        </section>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html" aria-label="ROYAL DINER Home">
+                    <img src="img/logo.png" alt="" class="brand-logo">
+                    <span class="brand-text"><span class="brand-name font-display-title">Royal Diner</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+                    aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html" data-page="home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="menu.html" data-page="menu">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="order.html" data-page="order">Order</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reservation.html"
+                                data-page="reservation">Reservation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html" data-page="about">About</a></li>
+                        <li class="nav-item language-nav-item">
+                            <label class="visually-hidden" for="siteLanguageSelect">Language</label>
+                            <select id="siteLanguageSelect" class="language-select" data-language-select aria-label="Language">
+                                <option value="ja">日本語</option>
+                                <option value="en">English</option>
+                            </select>
+                        </li>
+                        <li class="nav-item cart-nav-item">
+                            <button id="cartOpenButton" class="cart-link" type="button" aria-label="Open shopping cart"
+                                aria-haspopup="dialog" aria-controls="cartDrawer" aria-expanded="false"
+                                title="Shopping Cart">
+                                <i class="bi bi-cart3" aria-hidden="true"></i>
+                                <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+
+    <main class="home-page">
+        <section class="home-hero section" aria-labelledby="homeHeroTitle">
+            <div class='box'>
+                <div class='wave -one'> </div>
+                <div class='wave -two'></div>
+            </div>
+            <div class="container home-hero-grid">
+                <div class="home-hero-copy">
+                    <p class="home-eyebrow"><span aria-hidden="true">✦</span> Japanese Western-style comfort food <span
+                            aria-hidden="true">✦</span></p>
+                    <h1 id="homeHeroTitle" class="home-hero-title">Comfort worth <em>coming back to.</em></h1>
+                    <p class="home-hero-tagline"><span class="title-em">Royal Diner</span> brings together the
+                        comforting spirit of Japanese yoshoku and the relaxed warmth of a classic diner. From a softly
+                        glazed omurice to a slow-cooked stew, we believe a good meal can turn an ordinary day into
+                        something worth lingering over.</p>
+                    <a class="btn-primary-custom home-hero-cta" href="menu.html">Explore the Menu</a>
+                </div>
+                <figure class="home-hero-photo">
+                    <img src="img/home/home-main.png"
+                        alt="A beautifully plated Japanese Western-style meal served on a warm wooden table"
+                        fetchpriority="high">
+                    <figcaption><span class="home-photo-caption-mark" aria-hidden="true"></span>Comfort, served with
+                        care</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="home-favorites section" aria-labelledby="homeFavoritesTitle">
+            <div class="container">
+                <div class="home-section-heading home-section-heading-split">
+                    <div>
+                        <p class="home-eyebrow">A taste of ROYAL DINER</p>
+                        <h2 id="homeFavoritesTitle">Royal <em>Favorites</em></h2>
+                        <p class="home-section-intro">A few comforting classics to start with. Find your favourite and
+                            add it straight to your cart.</p>
+                    </div>
+                    <div class="home-carousel-controls" aria-label="Featured dishes carousel controls">
+                        <button type="button" id="homeCarouselPrev" class="home-carousel-button"
+                            aria-label="Scroll featured dishes backward" aria-controls="homeFeaturedTrack"><i
+                                class="bi bi-arrow-left" aria-hidden="true"></i></button>
+                        <button type="button" id="homeCarouselNext" class="home-carousel-button"
+                            aria-label="Scroll featured dishes forward" aria-controls="homeFeaturedTrack"><i
+                                class="bi bi-arrow-right" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <div id="homeFeaturedTrack" class="home-featured-track" aria-label="Featured menu dishes"></div>
+                <div class="home-centered-action"><a class="btn-outline-custom" href="menu.html">View the Full Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-categories section-small" aria-labelledby="homeCategoriesTitle">
+            <div class="container">
+                <div class="home-section-heading home-section-heading-centered">
+                    <p class="home-eyebrow">What's on your mind?</p>
+                    <h2 id="homeCategoriesTitle">Find your <em>favorite.</em></h2>
+                    <p class="home-section-intro">Browse by craving and find something that sounds just right.</p>
+                </div>
+                <div id="homeCategoryGrid" class="home-category-grid" aria-label="Popular menu categories"></div>
+                <div class="home-centered-action"><a class="home-text-link" href="menu.html">Browse all menu categories
+                        <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+            </div>
+        </section>
+
+        <section class="home-highlights section-small" aria-label="ROYAL DINER highlights">
+            <div class="container">
+                <div class="home-highlight-grid">
+                    <article class="home-highlight-card">
+                        <span class="home-highlight-icon" aria-hidden="true"><i class="bi bi-egg-fried"></i></span>
+                        <h3>Yoshoku classics</h3>
+                        <p>Japanese Western-style favourites, from omurice to hearty hamburg steak.</p>
+                    </article>
+                    <article class="home-highlight-card">
+                        <span class="home-highlight-icon" aria-hidden="true"><i class="bi bi-heart"></i></span>
+                        <h3>A little comfort</h3>
+                        <p>Familiar flavours and satisfying plates for an everyday treat.</p>
+                    </article>
+                    <article class="home-highlight-card">
+                        <span class="home-highlight-icon" aria-hidden="true"><i class="bi bi-bag-check"></i></span>
+                        <h3>Easy to plan</h3>
+                        <p>Browse the menu, build a cart, or reserve a table in a few simple steps.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-order-section section" aria-labelledby="homeOrderTitle">
+            <div class="container">
+                <div class="home-order-panel">
+                    <div class="home-order-copy">
+                        <p class="home-eyebrow home-eyebrow-light">Good food, your way</p>
+                        <h2 id="homeOrderTitle">Ready for something <em>good?</em></h2>
+                        <p>Choose how you'd like to enjoy your next ROYAL DINER favourite.</p>
+                        <div class="home-order-actions">
+                            <a class="btn-secondary-custom" href="order.html#checkout">Order Online <i
+                                    class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+                            <a class="home-order-secondary-link" href="reservation.html">Make a Reservation <i
+                                    class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="home-order-options" aria-label="Available ordering options">
+                        <article class="home-order-option"><span aria-hidden="true"><i class="bi bi-truck"></i></span>
+                            <div>
+                                <h3>Delivery</h3>
+                                <p>Enjoy a meal at home.</p>
+                            </div>
+                        </article>
+                        <article class="home-order-option"><span aria-hidden="true"><i class="bi bi-bag"></i></span>
+                            <div>
+                                <h3>Pickup</h3>
+                                <p>Order ahead and collect.</p>
+                            </div>
+                        </article>
+                        <article class="home-order-option"><span aria-hidden="true"><i class="bi bi-cup-hot"></i></span>
+                            <div>
+                                <h3>Eat-in</h3>
+                                <p>Take a seat and settle in.</p>
+                            </div>
+                        </article>
+                        <button type="button" class="home-cart-reminder" id="homeOpenCart"
+                            aria-label="Open your shopping cart">
+                            <span class="home-cart-reminder-icon"><i class="bi bi-cart3" aria-hidden="true"></i></span>
+                            <span><strong>Your cart</strong><small><span id="homeCartCount">0</span> items
+                                    selected</small></span>
+                            <i class="bi bi-arrow-up-right home-cart-reminder-arrow" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-notes-section section" aria-labelledby="homeNotesTitle">
+            <div class="container">
+                <div class="home-section-heading home-section-heading-centered">
+                    <p class="home-eyebrow">Around the table</p>
+                    <h2 id="homeNotesTitle">The little things that <em>matter.</em></h2>
+                    <p class="home-section-intro">Comforting classics, a welcoming table, and simple ways to plan your
+                        next visit.</p>
+                </div>
+                <div class="home-review-grid" aria-label="Guest notes">
+                    <article class="home-review-card"><span class="home-review-quote" aria-hidden="true">“</span>
+                        <p>Some meals become favourites because they feel familiar from the very first bite.</p><span
+                            class="home-review-caption">Comforting classics</span>
+                    </article>
+                    <article class="home-review-card"><span class="home-review-quote" aria-hidden="true">“</span>
+                        <p>A good meal is even better when there is time to relax and enjoy it.</p><span
+                            class="home-review-caption">Easy, unhurried moments</span>
+                    </article>
+                    <article class="home-review-card"><span class="home-review-quote" aria-hidden="true">“</span>
+                        <p>From a hearty main to a sweet finish, there is always another favourite to discover.</p><span
+                            class="home-review-caption">Something for every craving</span>
+                    </article>
+                </div>
+
+                <div class="home-faq-wrap" aria-labelledby="homeFaqTitle">
+                    <div class="home-faq-heading">
+                        <p class="home-eyebrow">A few helpful answers</p>
+                        <h2 id="homeFaqTitle">Questions, <br><em>answered.</em></h2>
+                        <p>Quick information about the menu, ordering, and reservations.</p>
+                    </div>
+                    <div class="home-faq-list">
+                        <details class="home-faq-item">
+                            <summary>What is Japanese yoshoku?</summary>
+                            <div class="home-faq-answer">
+                                <p>Yoshoku is Japanese-style Western cooking. At ROYAL DINER, that means comforting
+                                    favourites such as omurice, hamburg steak, curry, pasta, and gratin.</p>
+                            </div>
+                        </details>
+                        <details class="home-faq-item">
+                            <summary>Can I add dishes to my cart from the Home page?</summary>
+                            <div class="home-faq-answer">
+                                <p>Yes. Use Add to Cart on a featured dish. Open the cart icon in the navigation to
+                                    review items and adjust quantities before continuing to the Order page.</p>
+                            </div>
+                        </details>
+                        <details class="home-faq-item">
+                            <summary>How do I place an order?</summary>
+                            <div class="home-faq-answer">
+                                <p>Open the Order page, choose delivery, pickup, or eat-in, enter the requested details,
+                                    and review the order before confirming.</p>
+                            </div>
+                        </details>
+                        <details class="home-faq-item">
+                            <summary>Can I reserve a table in advance?</summary>
+                            <div class="home-faq-answer">
+                                <p>Yes. Visit the Reservation page to select a date, time, and guest count, then review
+                                    your booking details before confirming.</p>
+                            </div>
+                        </details>
+                        <details class="home-faq-item">
+                            <summary>Where can I find my order or reservation details?</summary>
+                            <div class="home-faq-answer">
+                                <p>Open the Order page to view order history, or the Reservation page to review upcoming
+                                    and previous reservations.</p>
+                            </div>
+                        </details>
+                        <details class="home-faq-item">
+                            <summary>What are the opening hours?</summary>
+                            <div class="home-faq-answer">
+                                <p>Lunch: 11:00–15:00. Dinner: 17:00–21:00. Hours may change for holidays or special
+                                    occasions, so check the latest information before visiting.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+                <div class="home-about-link-row"><span>Curious about the story behind the food?</span><a
+                        class="home-text-link" href="about.html">Get to know ROYAL DINER <i class="bi bi-arrow-right"
+                            aria-hidden="true"></i></a></div>
+            </div>
+        </section>
+
+        <section class="home-visit-section section-small" aria-labelledby="homeVisitTitle">
+            <div class="container">
+                <div class="home-visit-panel">
+                    <div class="home-visit-intro">
+                        <p class="home-eyebrow">Plan your visit</p>
+                        <h2 id="homeVisitTitle">We'll save you <br><em>a seat.</em></h2>
+                        <p>Find the essentials before your next visit to ROYAL DINER.</p>
+                        <div class="home-visit-actions"><a class="btn-primary-custom" href="reservation.html">Make a
+                                Reservation <i class="bi bi-calendar-check" aria-hidden="true"></i></a><a
+                                class="home-text-link" href="about.html#access">More visit information <i
+                                    class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+                    </div>
+                    <div class="home-visit-info">
+                        <article class="home-visit-info-item"><span class="home-visit-icon" aria-hidden="true"><i
+                                    class="bi bi-clock"></i></span>
+                            <div>
+                                <h3>Opening Hours</h3>
+                                <p>Lunch <strong>11:00–15:00</strong></p>
+                                <p>Dinner <strong>17:00–21:00</strong></p>
+                            </div>
+                        </article>
+                        <article class="home-visit-info-item"><span class="home-visit-icon" aria-hidden="true"><i
+                                    class="bi bi-geo-alt"></i></span>
+                            <div>
+                                <h3>Find Us</h3>
+                                <p>Tokyo, Japan</p><a
+                                    href="https://www.google.com/maps/search/?api=1&amp;query=Tokyo%2C%20Japan"
+                                    target="_blank" rel="noopener noreferrer">Open map <i class="bi bi-arrow-up-right"
+                                        aria-hidden="true"></i></a>
+                            </div>
+                        </article>
+                        <article class="home-visit-info-item"><span class="home-visit-icon" aria-hidden="true"><i
+                                    class="bi bi-chat-dots"></i></span>
+                            <div>
+                                <h3>Get in Touch</h3>
+                                <p><a href="tel:0300000000">03-0000-0000</a></p>
+                                <p><a href="mailto:info@royal-diner.com">info@royal-diner.com</a></p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="homeToast" class="home-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Restaurant -->
+                    <div class="col-lg-5">
+                        <div class="footer-brand font-display-title">Royal Diner</div>
+                        <div class="footer-japanese">ロイヤル・ダイナー</div>
+                        <p class="footer-description">
+                            A cozy restaurant serving delicious Western-style Japanese
+                            dishes.
+                        </p>
+
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="X">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-6 col-lg-2">
+                        <h2 class="footer-title">Quick Links</h2>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="index.html"> Home </a>
+                            </li>
+                            <li>
+                                <a href="menu.html"> Menu </a>
+                            </li>
+                            <li>
+                                <a href="order.html"> Order </a>
+                            </li>
+                            <li>
+                                <a href="reservation.html"> Reservation </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Information -->
+                    <div class="col-6 col-lg-2">
+                        <h2 class="footer-title">Information</h2>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="about.html"> About Us </a>
+                            </li>
+                            <li>
+                                <a href="about.html#access"> Access </a>
+                            </li>
+                            <li>
+                                <a href="about.html#hours"> Business Hours </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-lg-3">
+                        <h2 class="footer-title">Contact</h2>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Tokyo, Japan</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-telephone"></i>
+                                <span>03-0000-0000</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-envelope"></i>
+                                <span>info@royal-diner.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-inner">
+                    <p>
+                        © <span class="current-year">2026</span>
+                        ROYAL DINER
+                    </p>
+                    <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="true" aria-label="Turn motion effects off" title="Turn motion effects off">
+                        <i class="bi bi-pause-circle" aria-hidden="true"></i>
+                        <span data-motion-label>Motion: On</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="cartBackdrop" class="cart-backdrop" hidden aria-hidden="true"></div>
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle"
+        aria-describedby="cartDrawerCount" aria-hidden="true" inert>
+        <header class="cart-drawer-header">
+            <div>
+                <h2 id="cartDrawerTitle" class="cart-drawer-title">Your Cart</h2>
+                <span id="cartDrawerCount" class="cart-drawer-count">0 items</span>
+            </div>
+            <button id="cartDrawerClose" class="cart-drawer-close" type="button" aria-label="Close shopping cart"><i
+                    class="bi bi-x-lg" aria-hidden="true"></i></button>
+        </header>
+        <div class="cart-drawer-body">
+            <div id="cartEmptyState" class="cart-empty-state" hidden>
+                <span class="cart-empty-icon"><i class="bi bi-basket2" aria-hidden="true"></i></span>
+                <h3>Your cart is waiting</h3>
+                <p>You have not added any dishes yet. Explore the menu and find something you like.</p>
+                <a class="btn-primary-custom" href="menu.html"><i class="bi bi-journal-richtext" aria-hidden="true"></i>
+                    Browse Menu</a>
+            </div>
+            <div id="cartItems" class="cart-item-list" hidden></div>
+        </div>
+        <footer id="cartDrawerFooter" class="cart-drawer-footer" hidden>
+            <div class="cart-clear-row"><button id="cartClearButton" class="cart-clear-button" type="button">Clear
+                    cart</button></div>
+            <div id="cartClearConfirm" class="cart-clear-confirm" hidden>
+                <span>Remove all items?</span>
+                <span class="cart-clear-confirm-actions">
+                    <button id="cartClearConfirmNo" type="button">Keep items</button>
+                    <button id="cartClearConfirmYes" class="confirm-clear" type="button">Clear all</button>
+                </span>
+            </div>
+            <div class="cart-subtotal-row"><span>Subtotal</span><strong id="cartSubtotal"
+                    class="cart-subtotal-value">¥0</strong></div>
+            <p class="cart-fee-note">Any delivery fee is shown during checkout. Menu prices are displayed as listed.</p>
+            <div class="cart-footer-actions">
+                <a id="cartCheckoutButton" class="btn-primary-custom" href="order.html#checkout"><i
+                        class="bi bi-arrow-right-circle" aria-hidden="true"></i> Proceed to Order</a>
+                <button id="cartContinueShopping" class="btn-outline-custom" type="button">Continue Shopping</button>
+            </div>
+        </footer>
+    </aside>
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+        <span id="cartToastMessage" class="cart-toast-message"></span>
+        <button id="cartToastUndo" class="cart-toast-undo" type="button" hidden>Undo</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/menu-data.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/motion.js"></script>
+    <script src="js/demo-mode.js"></script>
+</body>
+
+</html>

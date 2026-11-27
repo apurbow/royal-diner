@@ -1,0 +1,634 @@
+/* Japanese typography and layout tuning */
+html[lang="ja"] {
+    --font-jp-display: "Shippori Mincho", serif;
+    --font-jp-body: "Noto Sans JP", sans-serif;
+}
+
+html[lang="ja"] body {
+    font-family: var(--font-jp-body);
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+html[lang="ja"] h1,
+html[lang="ja"] h2,
+html[lang="ja"] h3,
+html[lang="ja"] h4,
+html[lang="ja"] h5,
+html[lang="ja"] h6 {
+    font-family: var(--font-jp-display);
+    font-weight: 600;
+    line-height: 1.38;
+    letter-spacing: .025em;
+    word-break: normal;
+}
+
+/* Keep the Latin brand wordmark intact in both languages. */
+html[lang="ja"] .brand-name,
+html[lang="ja"] .footer-brand {
+    font-family: "Allura", cursive;
+    font-weight: 500;
+    letter-spacing: 5px;
+}
+
+html[lang="ja"] .brand-name {
+    font-size: 2.8rem;
+    line-height: 1;
+    font-weight: bolder;
+}
+
+html[lang="ja"] .footer-brand {
+    font-size: 2.8rem;
+    line-height: 1.1;
+    letter-spacing: 5px;
+}
+
+html[lang="ja"] .handwritten-accent,
+html[lang="ja"] .page-heading h1,
+html[lang="ja"] .home-hero-title,
+html[lang="ja"] .about-hero-title {
+    font-family: var(--font-jp-display);
+}
+
+/* Shared page titles */
+html[lang="ja"] .page-heading h1 {
+    margin-bottom: 8px;
+    font-size: clamp(2.3rem, 4vw, 3.35rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: .035em;
+}
+
+html[lang="ja"] .page-heading p {
+    font-family: var(--font-jp-body);
+    font-size: .9rem;
+    line-height: 1.85;
+    letter-spacing: .01em;
+}
+
+html[lang="ja"] .navbar-nav .nav-link,
+html[lang="ja"] .language-select,
+html[lang="ja"] button,
+html[lang="ja"] input,
+html[lang="ja"] textarea,
+html[lang="ja"] select {
+    font-family: var(--font-jp-body);
+}
+
+html[lang="ja"] .navbar-nav .nav-link {
+    font-size: .9rem;
+    line-height: 1.45;
+    letter-spacing: 0;
+}
+
+html[lang="ja"] .language-select {
+    min-width: 120px;
+    font-size: .86rem;
+}
+
+html[lang="ja"] p,
+html[lang="ja"] li,
+html[lang="ja"] label,
+html[lang="ja"] .form-text,
+html[lang="ja"] .text-muted-custom {
+    line-height: 1.8;
+}
+
+html[lang="ja"] .btn-primary-custom,
+html[lang="ja"] .btn-secondary-custom,
+html[lang="ja"] .btn-outline-custom {
+    font-size: .9rem;
+    line-height: 1.5;
+    letter-spacing: .005em;
+}
+
+html[lang="ja"] .form-label {
+    font-size: .9rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .form-control,
+html[lang="ja"] .form-select {
+    font-size: .9rem;
+    line-height: 1.5;
+}
+
+/* Small section labels: avoid English-style tracking and uppercase styling. */
+html[lang="ja"] .home-eyebrow,
+html[lang="ja"] .about-eyebrow,
+html[lang="ja"] .about-section-kicker,
+html[lang="ja"] .menu-eyebrow,
+html[lang="ja"] .reservation-eyebrow,
+html[lang="ja"] .reservation-confirmation-eyebrow,
+html[lang="ja"] .home-food-category,
+html[lang="ja"] .home-food-tag {
+    font-family: var(--font-jp-body);
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .025em;
+    line-height: 1.6;
+    text-transform: none;
+}
+
+html[lang="ja"] .home-eyebrow {
+    margin-bottom: 10px;
+}
+
+html[lang="ja"] .about-eyebrow,
+html[lang="ja"] .about-section-kicker {
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+html[lang="ja"] .menu-eyebrow,
+html[lang="ja"] .reservation-eyebrow {
+    letter-spacing: .04em;
+}
+
+/* Home */
+html[lang="ja"] .home-hero-title {
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: clamp(2.25rem, 3.35vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: .025em;
+}
+
+html[lang="ja"] .home-hero-copy p,
+html[lang="ja"] .home-hero-photo figcaption,
+html[lang="ja"] .about-hero-visual figcaption {
+    font-family: var(--font-jp-body);
+}
+
+html[lang="ja"] .home-hero-tagline {
+    max-width: 440px;
+    font-size: .92rem;
+    line-height: 1.85;
+}
+
+html[lang="ja"] .home-section-heading h2,
+html[lang="ja"] .home-order-copy h2,
+html[lang="ja"] .home-faq-heading h2,
+html[lang="ja"] .home-visit-intro h2 {
+    font-size: clamp(1.45rem, 2.45vw, 2.05rem);
+    line-height: 1.45;
+    letter-spacing: .025em;
+}
+
+html[lang="ja"] .home-section-intro,
+html[lang="ja"] .home-faq-heading > p:last-child {
+    font-size: .9rem;
+    line-height: 1.85;
+}
+
+html[lang="ja"] .home-food-name {
+    font-family: var(--font-jp-body);
+    font-size: .98rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .home-food-description {
+    font-size: .84rem;
+    line-height: 1.8;
+}
+
+html[lang="ja"] .home-food-category {
+    font-size: .7rem;
+}
+
+html[lang="ja"] .home-add-button {
+    font-size: .76rem;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+html[lang="ja"] .home-category-name {
+    font-family: var(--font-jp-body);
+    font-size: .82rem;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .home-faq-item summary {
+    font-size: .86rem;
+    line-height: 1.75;
+}
+
+/* About */
+html[lang="ja"] .about-hero-title {
+    margin-bottom: 4px;
+    font-size: clamp(2.6rem, 4.1vw, 3.65rem);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .035em;
+}
+
+html[lang="ja"] .about-hero-subtitle,
+html[lang="ja"] .about-handwritten-note {
+    font-family: var(--font-jp-display);
+    font-size: clamp(1rem, 1.35vw, 1.16rem);
+    line-height: 1.65;
+}
+
+html[lang="ja"] .about-handwritten-note {
+    font-size: 1.25rem;
+}
+
+html[lang="ja"] .about-hero-description,
+html[lang="ja"] .about-story-block p:not(.about-section-kicker),
+html[lang="ja"] .about-concept-block p:not(.about-section-kicker),
+html[lang="ja"] .about-atmosphere-copy > p:not(.about-section-kicker),
+html[lang="ja"] .about-ingredients-panel > p:not(.about-section-kicker),
+html[lang="ja"] .about-gallery-heading > p:not(.about-section-kicker),
+html[lang="ja"] .about-visit-heading > p:not(.about-section-kicker) {
+    font-size: .9rem;
+    line-height: 1.9;
+}
+
+html[lang="ja"] .about-page .about-story-block h2,
+html[lang="ja"] .about-page .about-concept-block h2,
+html[lang="ja"] .about-page .about-atmosphere-copy h2,
+html[lang="ja"] .about-page .about-section-heading h2,
+html[lang="ja"] .about-page .about-ingredients-panel h2,
+html[lang="ja"] .about-page .about-gallery-heading h2,
+html[lang="ja"] .about-page .about-visit-heading h2 {
+    font-size: clamp(1.4rem, 2.35vw, 1.95rem);
+    line-height: 1.5;
+    letter-spacing: .025em;
+}
+
+html[lang="ja"] .about-signature-item h3,
+html[lang="ja"] .about-info-card h3 {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 900;
+}
+
+
+html[lang="ja"] .about-signature-item p,
+html[lang="ja"] .about-info-card > p,
+html[lang="ja"] .about-section-heading > p {
+    font-size: .85rem;
+    line-height: 1.8;
+}
+
+html[lang="ja"] .about-final-cta-title {
+    font-family: var(--font-jp-display);
+    font-size: clamp(.98rem, 1.6vw, 1.2rem);
+    line-height: 1.65;
+}
+
+/* Menu and dish cards */
+html[lang="ja"] .menu-category-btn {
+    padding: 9px 15px;
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+html[lang="ja"] .menu-result-count {
+    font-size: .84rem;
+}
+
+html[lang="ja"] .menu-card-title,
+html[lang="ja"] .menu-info-title {
+    font-family: var(--font-jp-body);
+    font-size: 1.18rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .menu-card-description,
+html[lang="ja"] .menu-info-description,
+html[lang="ja"] .menu-info-details {
+    font-size: .84rem;
+    line-height: 1.8;
+}
+
+html[lang="ja"] .menu-signature-label,
+html[lang="ja"] .menu-info-category {
+    font-size: .7rem;
+    line-height: 1.45;
+    letter-spacing: 0;
+}
+
+html[lang="ja"] .menu-add-button,
+html[lang="ja"] .menu-info-close {
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+/* Cart drawer */
+html[lang="ja"] .cart-drawer-title {
+    font-family: var(--font-jp-display);
+    font-size: 1.35rem;
+    line-height: 1.45;
+}
+
+html[lang="ja"] .cart-drawer-count {
+    font-size: .8rem;
+    line-height: 1.6;
+}
+
+html[lang="ja"] .cart-empty-state h3 {
+    font-family: var(--font-jp-display);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .cart-empty-state p {
+    font-size: .86rem;
+    line-height: 1.85;
+}
+
+html[lang="ja"] .cart-item-name {
+    font-family: var(--font-jp-body);
+    font-size: .9rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .cart-item-unit-price {
+    font-size: .78rem;
+}
+
+html[lang="ja"] .cart-item-line-total {
+    font-size: .9rem;
+}
+
+html[lang="ja"] .quantity-control button,
+html[lang="ja"] .cart-drawer-footer button {
+    font-size: .86rem;
+}
+
+/* Order */
+html[lang="ja"] .order-page-heading h1 {
+    font-size: clamp(2.25rem, 3.8vw, 3.25rem);
+    line-height: 1.4;
+}
+
+html[lang="ja"] .order-page-heading p {
+    font-size: .9rem;
+    line-height: 1.85;
+}
+
+html[lang="ja"] .order-tab {
+    font-size: .86rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .checkout-step-indicator {
+    font-size: .76rem;
+    line-height: 1.45;
+}
+
+html[lang="ja"] .checkout-step-title,
+html[lang="ja"] .order-summary-heading h2,
+html[lang="ja"] .checkout-empty-state h2,
+html[lang="ja"] .order-history-empty h2,
+html[lang="ja"] .checkout-review-heading {
+    font-family: var(--font-jp-display);
+    font-size: .98rem;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .checkout-step-description,
+html[lang="ja"] .order-summary-heading p,
+html[lang="ja"] .checkout-empty-state p,
+html[lang="ja"] .order-history-empty p {
+    font-size: .84rem;
+    line-height: 1.8;
+}
+
+html[lang="ja"] .order-type-option {
+    line-height: 1.55;
+}
+
+html[lang="ja"] .order-type-name {
+    font-size: .88rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .order-type-description,
+html[lang="ja"] .order-field-help,
+html[lang="ja"] .order-summary-footnote {
+    font-size: .78rem;
+    line-height: 1.75;
+}
+
+html[lang="ja"] .order-field-label,
+html[lang="ja"] .order-type-fieldset legend {
+    font-size: .88rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .order-summary-item-name strong {
+    font-family: var(--font-jp-body);
+    font-size: .84rem;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .order-summary-item-name span,
+html[lang="ja"] .checkout-review-item-meta,
+html[lang="ja"] .checkout-review-muted {
+    font-size: .76rem;
+    line-height: 1.65;
+}
+
+html[lang="ja"] .checkout-review-block h3 {
+    font-family: var(--font-jp-display);
+    font-size: .95rem;
+    line-height: 1.55;
+}
+
+/* Reservation */
+html[lang="ja"] .reservation-page-heading h1 {
+    font-size: clamp(2.25rem, 3.8vw, 3.25rem);
+    line-height: 1.4;
+}
+
+html[lang="ja"] .reservation-page-heading p {
+    font-size: .9rem;
+    line-height: 1.85;
+}
+
+html[lang="ja"] .reservation-tab {
+    font-size: .86rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .reservation-step-indicator {
+    font-size: .76rem;
+    line-height: 1.45;
+}
+
+html[lang="ja"] .reservation-step-title,
+html[lang="ja"] .reservation-summary-heading h2,
+html[lang="ja"] .reservation-rules-card h2,
+html[lang="ja"] .reservation-history-tools h2,
+html[lang="ja"] .reservation-review-block h3,
+html[lang="ja"] .reservation-dialog-header h2,
+html[lang="ja"] .reservation-history-empty h2,
+html[lang="ja"] .reservation-cancel-dialog h2 {
+    font-family: var(--font-jp-display);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .reservation-step-description,
+html[lang="ja"] .reservation-field-help,
+html[lang="ja"] .reservation-rule-note,
+html[lang="ja"] .reservation-availability-message {
+    font-size: .82rem;
+    line-height: 1.8;
+}
+
+html[lang="ja"] .reservation-field > label,
+html[lang="ja"] .reservation-time-fieldset legend {
+    font-size: .86rem;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .reservation-time-option {
+    line-height: 1.4;
+}
+
+html[lang="ja"] .reservation-time-label {
+    font-size: .84rem;
+}
+
+html[lang="ja"] .reservation-time-status {
+    font-size: .64rem;
+    line-height: 1.35;
+}
+
+html[lang="ja"] .reservation-review-dl dt,
+html[lang="ja"] .reservation-number-panel span {
+    font-size: .74rem;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .reservation-review-dl dd {
+    font-size: .84rem;
+    line-height: 1.65;
+}
+
+html[lang="ja"] .reservation-confirmation-card > h2 {
+    font-family: var(--font-jp-display);
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.5;
+}
+
+html[lang="ja"] .reservation-history-main h3 {
+    font-family: var(--font-jp-body);
+    font-size: .9rem;
+    line-height: 1.55;
+}
+
+html[lang="ja"] .reservation-history-main p,
+html[lang="ja"] .reservation-dialog-header p,
+html[lang="ja"] .reservation-cancel-dialog p {
+    font-size: .82rem;
+    line-height: 1.75;
+}
+
+/* Footer and small shared text */
+html[lang="ja"] .footer-title {
+    font-family: var(--font-jp-display);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+html[lang="ja"] .footer-description,
+html[lang="ja"] .footer-links a,
+html[lang="ja"] .footer-contact li {
+    font-size: .82rem;
+    line-height: 1.8;
+}
+
+html[lang="ja"] .footer-japanese {
+    font-size: .72rem;
+    letter-spacing: .025em;
+}
+
+@media (max-width: 991.98px) {
+    html[lang="ja"] .home-hero-title {
+        font-size: clamp(2.15rem, 4vw, 3rem);
+    }
+
+    html[lang="ja"] .about-hero-title {
+        font-size: clamp(2.45rem, 4.2vw, 3.25rem);
+    }
+}
+
+@media (max-width: 767.98px) {
+    html[lang="ja"] .home-hero-title {
+        font-size: clamp(2.1rem, 6.2vw, 2.7rem);
+        line-height: 1.45;
+    }
+
+    html[lang="ja"] .about-hero-title {
+        font-size: clamp(2.35rem, 6vw, 2.9rem);
+    }
+
+    html[lang="ja"] .home-section-heading h2,
+    html[lang="ja"] .home-order-copy h2,
+    html[lang="ja"] .home-faq-heading h2,
+    html[lang="ja"] .home-visit-intro h2,
+    html[lang="ja"] .about-page .about-story-block h2,
+    html[lang="ja"] .about-page .about-concept-block h2,
+    html[lang="ja"] .about-page .about-atmosphere-copy h2,
+    html[lang="ja"] .about-page .about-section-heading h2,
+    html[lang="ja"] .about-page .about-ingredients-panel h2,
+    html[lang="ja"] .about-page .about-gallery-heading h2,
+    html[lang="ja"] .about-page .about-visit-heading h2 {
+        font-size: 1.4rem;
+    }
+
+    html[lang="ja"] .order-page-heading h1,
+    html[lang="ja"] .reservation-page-heading h1,
+    html[lang="ja"] .page-heading h1 {
+        font-size: clamp(2.05rem, 6vw, 2.65rem);
+    }
+}
+
+@media (max-width: 575.98px) {
+    html[lang="ja"] .brand-name {
+        font-size: 2rem;
+        letter-spacing: .05em;
+    }
+
+    html[lang="ja"] .menu-card-title {
+        font-size: .98rem;
+    }
+
+    html[lang="ja"] .menu-card-description {
+        font-size: .84rem;
+    }
+
+    html[lang="ja"] .cart-drawer-title {
+        font-size: 1.25rem;
+    }
+
+    html[lang="ja"] .order-tab,
+    html[lang="ja"] .reservation-tab {
+        font-size: .78rem;
+    }
+
+    html[lang="ja"] .reservation-time-grid {
+        gap: 7px;
+    }
+
+    html[lang="ja"] .reservation-time-label {
+        font-size: .78rem;
+    }
+
+    html[lang="ja"] .reservation-time-status {
+        font-size: .6rem;
+    }
+}

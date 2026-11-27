@@ -1,0 +1,604 @@
+:root {
+    --font-display: "Allura", cursive;
+    --font-heading: "Merienda", cursive;
+    --font-body: "Nunito Sans", sans-serif;
+
+    --color-base: #F3E9DC;
+    --color-main: #C08552;
+    --color-accent: #5E3023;
+    --color-coffee: #895737;
+
+    --color-white: #FFFFFF;
+    --color-black: #1F1F1F;
+    --color-text: #3F2A22;
+    --color-muted: #765F53;
+    --color-border: rgba(94, 48, 35, 0.15);
+
+    --shadow-small:
+        0 3px 10px rgba(94, 48, 35, 0.08);
+    --shadow-medium:
+        0 8px 25px rgba(94, 48, 35, 0.12);
+    --shadow-large:
+        0 15px 40px rgba(94, 48, 35, 0.15);
+
+    --container-width: 1200px;
+    --radius-small: 8px;
+    --radius-medium: 14px;
+    --radius-large: 20px;
+
+    --transition:
+        all 0.2s ease;
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    background-color: var(--color-base);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+}
+body.no-scroll {
+    overflow: hidden;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+button {
+    cursor: pointer;
+}
+::selection {
+    background-color: var(--color-main);
+    color: var(--color-white);
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    line-height: 1.2;
+}
+.handwritten-accent {
+    font-family: var(--font-display);
+    font-weight: 500;
+}
+.elegant-italic {
+    font-family: var(--font-body);
+    font-style: italic;
+}
+p {
+    margin-top: 0;
+}
+.text-muted-custom {
+    color: var(--color-muted);
+}
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+}
+main {
+    min-height: 60vh;
+}
+.section {
+    padding: 80px 0;
+}
+.section-small {
+    padding: 50px 0;
+}
+.section-large {
+    padding: 110px 0;
+}
+.page-heading {
+    margin-bottom: 50px;
+}
+.font-display-title {
+    font-family: var(--font-display);
+}
+.page-heading h1 {
+    margin-bottom: 0px;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.05;
+}
+.page-heading p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--color-muted);
+    font-family: var(--font-heading);
+    font-size: .95rem;
+    line-height: 1.55;
+}
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(243, 233, 220, 0.96);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(8px);
+}
+.navbar {
+    min-height: 78px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-accent);
+}
+.navbar-brand:hover {
+    color: var(--color-coffee);
+}
+.brand-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+.brand-name {
+    color: var(--color-accent);
+    font-size: 2.8rem;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+.brand-japanese {
+    margin-top: 4px;
+    color: var(--color-coffee);
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+}
+.navbar-nav {
+    gap: 5px;
+}
+.navbar-nav .nav-link {
+    padding: 9px 14px !important;
+    border-radius: var(--radius-small);
+    color: var(--color-accent);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.navbar-nav .nav-link:hover {
+    background-color: rgba(192, 133, 82, 0.15);
+    color: var(--color-accent);
+}
+.navbar-nav .nav-link.active {
+    background-color: var(--color-main);
+    color: var(--color-white);
+}
+.navbar-toggler {
+    padding: 7px 10px;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-small);
+    color: var(--color-accent);
+}
+.navbar-toggler i {
+    font-size: 1.5rem;
+}
+.navbar-toggler:focus {
+    box-shadow:
+        0 0 0 3px rgba(192, 133, 82, 0.25);
+}
+.cart-nav-item {
+    margin-left: 8px;
+}
+.cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transition: var(--transition);
+}
+.cart-link:hover {
+    background-color: var(--color-coffee);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+.cart-link i {
+    font-size: 1.15rem;
+}
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background-color: var(--color-main);
+    color: var(--color-black);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+.btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-small);
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-weight: 600;
+    transition: var(--transition);
+}
+.btn-primary-custom:hover {
+    background-color: var(--color-coffee);
+    border-color: var(--color-coffee);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+.btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border: 2px solid var(--color-main);
+    border-radius: var(--radius-small);
+    background-color: var(--color-main);
+    color: var(--color-black);
+    font-weight: 600;
+    transition: var(--transition);
+}
+.btn-secondary-custom:hover {
+    background-color: var(--color-coffee);
+    border-color: var(--color-coffee);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+.btn-outline-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 21px;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-small);
+    background-color: transparent;
+    color: var(--color-accent);
+    font-weight: 600;
+    transition: var(--transition);
+}
+.btn-outline-custom:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+}
+.custom-card {
+    overflow: hidden;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small);
+    transition: var(--transition);
+}
+.custom-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+.form-control,
+.form-select {
+    min-height: 46px;
+    border: 1px solid rgba(94, 48, 35, 0.20);
+    border-radius: var(--radius-small);
+    background-color: var(--color-white);
+    color: var(--color-text);
+}
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-main);
+    box-shadow:
+        0 0 0 3px rgba(192, 133, 82, 0.18);
+}
+.form-label {
+    margin-bottom: 6px;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+.site-footer {
+    margin-top: 80px;
+    background-color: var(--color-accent);
+    color: var(--color-base);
+}
+.footer-main {
+    padding: 60px 0 45px;
+}
+.footer-brand {
+    color: var(--color-base);
+    font-size: 2.8rem;
+    font-weight: normal;
+    letter-spacing: 5px;
+}
+.footer-japanese {
+    margin-top: 3px;
+    color: var(--color-base);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+.footer-description {
+    max-width: 390px;
+    margin-top: 14px;
+    color: rgba(243, 233, 220);
+    font-size: 0.9rem;
+}
+.footer-title {
+    font-family: var(--font-body);
+    margin-bottom: 16px;
+    color: var(--color-base);
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: italic;
+}
+.footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.footer-links li {
+    margin-bottom: 9px;
+}
+.footer-links a {
+    color: rgba(243, 233, 220);
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+.footer-links a:hover {
+    color: var(--color-base);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: rgba(243, 233, 220);
+    font-size: 0.9rem;
+}
+.footer-contact i {
+    margin-top: 4px;
+    color: var(--color-main);
+}
+.social-links {
+    display: flex;
+    gap: 9px;
+    margin-top: 20px;
+}
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(243, 233, 220, 0.10);
+    color: var(--color-base);
+    transition: var(--transition);
+}
+.social-link:hover {
+    background-color: var(--color-main);
+    color: var(--color-black);
+    transform: translateY(-2px);
+}
+.footer-bottom {
+    border-top:
+        1px solid rgba(243, 233, 220, 0.15);
+}
+.footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+.footer-bottom p {
+    margin: 0;
+    color: rgba(243, 233, 220, 0.80);
+    font-size: 0.78rem;
+}
+.text-brown {
+    color: var(--color-accent) !important;
+}
+.text-coffee {
+    color: var(--color-coffee) !important;
+}
+.text-caramel {
+    color: var(--color-main) !important;
+}
+.bg-cream {
+    background-color: var(--color-base) !important;
+}
+.bg-caramel {
+    background-color: var(--color-main) !important;
+}
+.bg-brown {
+    background-color: var(--color-accent) !important;
+}
+.bg-coffee {
+    background-color: var(--color-coffee) !important;
+}
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding-top: 15px;
+    }
+    .navbar-nav .nav-link {
+        padding: 10px 12px !important;
+    }
+    .cart-nav-item {
+        margin: 10px 0 5px 12px;
+    }
+}
+@media (max-width: 576px) {
+    .navbar {
+        min-height: 68px;
+    }
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+    }
+    .brand-name {
+        font-size: 2rem;
+        letter-spacing: 3px;
+    }
+    .brand-japanese {
+        font-size: 0.65rem;
+    }
+    .section {
+        padding: 55px 0;
+    }
+    .section-large {
+        padding: 75px 0;
+    }
+    .page-heading {
+        margin-bottom: 35px;
+    }
+    .footer-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Language controls */
+.language-nav-item {
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+}
+.language-select {
+    min-width: 112px;
+    min-height: 38px;
+    padding: 6px 30px 6px 11px;
+    border: 1px solid rgba(94, 48, 35, 0.28);
+    border-radius: var(--radius-small);
+    background-color: transparent;
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 200ms;
+}
+.language-select:focus {
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: .9rem;
+    background-color: var(--color-base);
+    border-color: var(--color-main);
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(192, 133, 82, .18);
+}
+
+.language-select option {
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: .9rem;
+    font-weight: 700;
+    background-color: var(--color-base);
+}
+
+
+/* Japanese typography */
+html[lang="ja"] body {
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.85;
+    letter-spacing: .015em;
+}
+html[lang="ja"] h1,
+html[lang="ja"] h2,
+html[lang="ja"] h3,
+html[lang="ja"] h4,
+html[lang="ja"] h5,
+html[lang="ja"] h6,
+html[lang="ja"] .page-heading h1,
+html[lang="ja"] .font-display-title,
+html[lang="ja"] .handwritten-accent {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: .025em;
+}
+html[lang="ja"] .page-heading p {
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.9;
+}
+html[lang="ja"] .navbar-nav .nav-link,
+html[lang="ja"] .language-select,
+html[lang="ja"] button,
+html[lang="ja"] input,
+html[lang="ja"] textarea,
+html[lang="ja"] select {
+    font-family: "Noto Sans JP", sans-serif;
+}
+html[lang="ja"] .menu-card-title,
+html[lang="ja"] .home-food-name,
+html[lang="ja"] .cart-item-name,
+html[lang="ja"] .order-summary-item-name strong {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 600;
+}
+
+html[lang="ja"] .brand-name,
+html[lang="ja"] .footer-brand,
+html[lang="ja"] .menu-card-price,
+html[lang="ja"] .home-food-price,
+html[lang="ja"] .cart-item-unit-price,
+html[lang="ja"] .cart-item-line-total {
+    font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+}
+html[lang="ja"] p,
+html[lang="ja"] li,
+html[lang="ja"] label,
+html[lang="ja"] .form-text,
+html[lang="ja"] .text-muted-custom {
+    line-height: 1.9;
+}
+html[lang="ja"] .language-select {
+    min-width: 112px;
+}
+
+@media (max-width: 991px) {
+    .language-nav-item {
+        margin: 8px 0 6px 12px;
+    }
+    .language-select {
+        width: 100%;
+        max-width: 180px;
+    }
+}
